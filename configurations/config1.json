@@ -1,0 +1,58 @@
+{
+  "available_rooms": {
+    "FSEGA": ["C303", "L001", "L404", "C502", "L002"],
+    "CENTER": ["2/I", "5/I", "3/II", "Nicolae Iorga"],
+    "MATHS": ["lambda", "gamma"]
+  },
+  "subjects": {
+    "first_year": {
+      "semester_1": {
+        "Fundamentals of Programming": {
+          "course_teacher": "Molnar Arthur",
+          "has_laboratory": true,
+          "has_seminary": true,
+          "lab_assistants": ["Imre Zsigmond", "Molnar Arthur", "Gabriel Mircea"],
+          "seminar_assistants": ["Imre Zsigmond", "Molnar Arthur", "Gabriel Mircea"],
+          "labs_per_week": 1,
+          "labs_are_split_on_semigroups": true,
+          "seminars_per_week": 1,
+          "seminars_are_split_on_semigroups": false,
+          "cant_hours": {
+            "Monday": [8, 9, 10, 11, 12, 13, 14, 15, 17, 19, 20],
+            "Tuesday": [8, 9, 10, 11, 13, 15, 16, 17, 18, 19, 20],
+            "Wednesday": [],
+            "Thursday": [8, 9],
+            "Friday": [8, 9, 18, 19, 20]
+          }
+        },
+        "Computer Systems Architecture": {
+          "course_teacher": "Vancea Alexandru",
+          "has_laboratory": true,
+          "has_seminary": true,
+          "lab_assistants": ["Delia Calin", "Dinu Damsa"],
+          "seminar_assistants": ["Delia Calin", "Dinu Damsa"],
+          "labs_per_week": 1,
+          "labs_are_split_on_semigroups": true,
+          "seminars_per_week": 1,
+          "seminars_are_split_on_semigroups": false,
+          "cant_hours": {
+            "Monday": [8, 9, 10, 11, 12, 13, 14, 15, 17, 19, 20],
+            "Tuesday": [8, 9, 10, 11, 13, 15, 16, 17, 18, 19, 20],
+            "Wednesday": [],
+            "Thursday": [8, 9],
+            "Friday": [8, 9, 18, 19, 20]
+          }
+        }
+      },
+      "semester_2": []
+    },
+    "second_year": {
+      "semester_1": [],
+      "semester_2": []
+    },
+    "third_year": {
+      "semester_1": [],
+      "semester_2": []
+    }
+  }
+}
