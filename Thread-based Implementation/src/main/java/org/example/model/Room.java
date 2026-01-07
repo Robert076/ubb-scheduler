@@ -1,0 +1,63 @@
+package org.example.model;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.List;
+import java.util.Objects; /**
+ * Model class representing a classroom/room in a building.
+ */
+public class Room {
+    @JsonProperty("Capacity")
+    private int capacity;
+
+    @JsonProperty("Flags")
+    private List<String> flags;
+
+    public Room() {}
+
+    public Room(int capacity, List<String> flags) {
+        this.capacity = capacity;
+        this.flags = flags;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public List<String> getFlags() {
+        return flags;
+    }
+
+    public void setFlags(List<String> flags) {
+        this.flags = flags;
+    }
+
+    public boolean hasFlag(String flag) {
+        return flags != null && flags.contains(flag);
+    }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "capacity=" + capacity +
+                ", flags=" + flags +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Room room = (Room) o;
+        return capacity == room.capacity && Objects.equals(flags, room.flags);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(capacity, flags);
+    }
+}

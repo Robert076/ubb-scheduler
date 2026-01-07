@@ -1,0 +1,22 @@
+{
+  "Gabriel Mircea": {
+    "Schedule": {
+      "Monday": [{ "start": "08:00", "end": "12:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "12:00" }],
+      "Wednesday": [{ "start": "16:00", "end": "20:00" }]
+    },
+    "MaxHoursPerWeek": 20,
+    "PreferredBuildings": ["FSEGA", "CENTER"],
+    "Subjects": {
+      "Fundamentals of Programming": {
+        "canSeminary": true,
+        "canLaboratory": true
+      },
+      "Computer Systems Architecture": {
+        "canSeminary": true,
+        "canLaboratory": true
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  }
+}
