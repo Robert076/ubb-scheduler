@@ -1,0 +1,16 @@
+{
+  "911": {
+    "Size": 30,
+    "Language": "English",
+    "Subjects": ["Computer Systems Architecture", "Fundamentals of Programming"],
+    "SeminarySplit": 1,
+    "LaboratorySplit": 2
+  },
+  "931": {
+    "Size": 30,
+    "Language": "English",
+    "Subjects": ["Mobile Applications"],
+    "SeminarySplit": 1,
+    "LaboratorySplit": 2
+  }
+}
