@@ -1,19 +1,687 @@
 {
-  "Gabriel Mircea": {
+  "Nechita Mihai": {
     "Schedule": {
-      "Monday": [{ "start": "08:00", "end": "12:00" }],
-      "Tuesday": [{ "start": "08:00", "end": "12:00" }],
-      "Wednesday": [{ "start": "16:00", "end": "20:00" }]
+      "Monday": [{ "start": "12:00", "end": "16:00" }],
+      "Wednesday": [{ "start": "14:00", "end": "18:00" }],
+      "Thursday": [{ "start": "10:00", "end": "14:00" }]
     },
-    "MaxHoursPerWeek": 20,
+    "MaxHoursPerWeek": 12,
+    "PreferredBuildings": ["FSEGA", "CENTER"],
+    "Subjects": {
+      "Mathematical Analysis": {
+        "canCourse": true,
+        "canSeminary": true,
+        "canLaboratory": false
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Suciu Mihai": {
+    "Schedule": {
+      "Monday": [{ "start": "14:00", "end": "18:00" }],
+      "Tuesday": [{ "start": "16:00", "end": "20:00" }]
+    },
+    "MaxHoursPerWeek": 8,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Computer Systems Architecture": {
+        "canCourse": true,
+        "canSeminary": false,
+        "canLaboratory": false
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Crivei Septimiu": {
+    "Schedule": {
+      "Monday": [{ "start": "16:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "12:00" }]
+    },
+    "MaxHoursPerWeek": 8,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Algebra": { "canCourse": true, "canSeminary": false, "canLaboratory": false }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Molnar Arthur": {
+    "Schedule": {
+      "Thursday": [
+        { "start": "08:00", "end": "14:00" },
+        { "start": "16:00", "end": "20:00" }
+      ],
+      "Friday": [{ "start": "10:00", "end": "14:00" }]
+    },
+    "MaxHoursPerWeek": 14,
     "PreferredBuildings": ["FSEGA", "CENTER"],
     "Subjects": {
       "Fundamentals of Programming": {
+        "canCourse": true,
+        "canSeminary": true,
+        "canLaboratory": false
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Lupea Mihaela": {
+    "Schedule": {
+      "Thursday": [{ "start": "12:00", "end": "16:00" }],
+      "Friday": [{ "start": "10:00", "end": "14:00" }]
+    },
+    "MaxHoursPerWeek": 10,
+    "PreferredBuildings": ["FSEGA", "CENTER"],
+    "Subjects": {
+      "Computational Logic": { "canCourse": true, "canSeminary": true, "canLaboratory": false }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Nadejde Camelia": {
+    "Schedule": {
+      "Tuesday": [{ "start": "08:00", "end": "14:00" }],
+      "Friday": [{ "start": "08:00", "end": "14:00" }]
+    },
+    "MaxHoursPerWeek": 14,
+    "PreferredBuildings": ["FSEGA", "CENTER"],
+    "Subjects": {
+      "Fundamentals of Programming": {
+        "canCourse": false,
+        "canSeminary": false,
+        "canLaboratory": true
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Bota Daniel": {
+    "Schedule": {
+      "Tuesday": [{ "start": "12:00", "end": "18:00" }],
+      "Thursday": [{ "start": "14:00", "end": "20:00" }]
+    },
+    "MaxHoursPerWeek": 14,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Computer Systems Architecture": {
+        "canCourse": false,
+        "canSeminary": false,
+        "canLaboratory": true
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Chiru Iulia": {
+    "Schedule": {
+      "Tuesday": [{ "start": "14:00", "end": "18:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "12:00" }]
+    },
+    "MaxHoursPerWeek": 10,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Algebra": { "canCourse": false, "canSeminary": true, "canLaboratory": false }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Bodea Nicolae": {
+    "Schedule": {
+      "Tuesday": [{ "start": "16:00", "end": "20:00" }],
+      "Friday": [{ "start": "14:00", "end": "20:00" }]
+    },
+    "MaxHoursPerWeek": 12,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Computer Systems Architecture": {
+        "canCourse": false,
+        "canSeminary": true,
+        "canLaboratory": false
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Lorinczi Abel": {
+    "Schedule": {
+      "Wednesday": [{ "start": "12:00", "end": "18:00" }],
+      "Thursday": [{ "start": "10:00", "end": "14:00" }]
+    },
+    "MaxHoursPerWeek": 12,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Mathematical Analysis": {
+        "canCourse": false,
+        "canSeminary": true,
+        "canLaboratory": false
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Briciu Anamaria": {
+    "Schedule": {
+      "Thursday": [{ "start": "16:00", "end": "20:00" }],
+      "Friday": [{ "start": "14:00", "end": "18:00" }]
+    },
+    "MaxHoursPerWeek": 10,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Computational Logic": {
+        "canCourse": false,
+        "canSeminary": true,
+        "canLaboratory": false
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Mircea Ioan Gabriel": {
+    "Schedule": {
+      "Friday": [
+        { "start": "08:00", "end": "12:00" },
+        { "start": "16:00", "end": "20:00" }
+      ],
+      "Monday": [{ "start": "08:00", "end": "12:00" }]
+    },
+    "MaxHoursPerWeek": 14,
+    "PreferredBuildings": ["FSEGA", "CENTER"],
+    "Subjects": {
+      "Fundamentals of Programming": {
+        "canCourse": false,
+        "canSeminary": true,
+        "canLaboratory": false
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Marginean Tiberius": {
+    "Schedule": {
+      "Friday": [{ "start": "12:00", "end": "18:00" }],
+      "Monday": [{ "start": "16:00", "end": "20:00" }]
+    },
+    "MaxHoursPerWeek": 12,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Computer Systems Architecture": {
+        "canCourse": false,
+        "canSeminary": false,
+        "canLaboratory": true
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Micu Tudor": {
+    "Schedule": {
+      "Tuesday": [{ "start": "08:00", "end": "12:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "14:00" }]
+    },
+    "MaxHoursPerWeek": 12,
+    "PreferredBuildings": ["FSEGA", "CENTER"],
+    "Subjects": {
+      "Algebra": { "canCourse": false, "canSeminary": true, "canLaboratory": false },
+      "Probabilities and Statistics": {
+        "canCourse": false,
+        "canSeminary": false,
+        "canLaboratory": true
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Pop Andreea": {
+    "Schedule": {
+      "Wednesday": [{ "start": "08:00", "end": "14:00" }],
+      "Thursday": [{ "start": "14:00", "end": "18:00" }]
+    },
+    "MaxHoursPerWeek": 12,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Fundamentals of Programming": {
+        "canCourse": false,
+        "canSeminary": false,
+        "canLaboratory": true
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Todasca Daniel": {
+    "Schedule": {
+      "Friday": [{ "start": "08:00", "end": "14:00" }],
+      "Monday": [{ "start": "14:00", "end": "18:00" }]
+    },
+    "MaxHoursPerWeek": 12,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Computer Systems Architecture": {
+        "canCourse": false,
+        "canSeminary": false,
+        "canLaboratory": true
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Ioja Iosif Andrei": {
+    "Schedule": {
+      "Tuesday": [{ "start": "12:00", "end": "16:00" }],
+      "Thursday": [{ "start": "10:00", "end": "14:00" }]
+    },
+    "MaxHoursPerWeek": 10,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Computer Systems Architecture": {
+        "canCourse": false,
+        "canSeminary": false,
+        "canLaboratory": true
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Lechintan Tudor": {
+    "Schedule": {
+      "Tuesday": [{ "start": "16:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "14:00", "end": "20:00" }]
+    },
+    "MaxHoursPerWeek": 12,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Computer Systems Architecture": {
+        "canCourse": false,
+        "canSeminary": false,
+        "canLaboratory": true
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Chelaru Ioana": {
+    "Schedule": {
+      "Wednesday": [{ "start": "08:00", "end": "14:00" }],
+      "Friday": [{ "start": "10:00", "end": "16:00" }]
+    },
+    "MaxHoursPerWeek": 14,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Fundamentals of Programming": {
+        "canCourse": false,
+        "canSeminary": false,
+        "canLaboratory": true
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Diaconu Ana-Maria": {
+    "Schedule": {
+      "Wednesday": [{ "start": "08:00", "end": "12:00" }],
+      "Thursday": [{ "start": "14:00", "end": "18:00" }]
+    },
+    "MaxHoursPerWeek": 10,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Fundamentals of Programming": {
+        "canCourse": false,
+        "canSeminary": false,
+        "canLaboratory": true
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Craciun Florin": {
+    "Schedule": {
+      "Monday": [{ "start": "08:00", "end": "12:00" }],
+      "Wednesday": [{ "start": "10:00", "end": "14:00" }]
+    },
+    "MaxHoursPerWeek": 10,
+    "PreferredBuildings": ["FSEGA", "CENTER"],
+    "Subjects": {
+      "Advanced Programming Methods": {
+        "canCourse": true,
+        "canSeminary": false,
+        "canLaboratory": false
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Darabant Sergiu": {
+    "Schedule": {
+      "Monday": [{ "start": "12:00", "end": "16:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "12:00" }]
+    },
+    "MaxHoursPerWeek": 10,
+    "PreferredBuildings": ["CENTER", "FSEGA"],
+    "Subjects": {
+      "Computer Networks": { "canCourse": true, "canSeminary": false, "canLaboratory": true }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Pop F. Horia": {
+    "Schedule": {
+      "Monday": [{ "start": "16:00", "end": "20:00" }],
+      "Thursday": [{ "start": "10:00", "end": "14:00" }]
+    },
+    "MaxHoursPerWeek": 10,
+    "PreferredBuildings": ["FSEGA", "CENTER"],
+    "Subjects": {
+      "Functional and Logical Programming": {
+        "canCourse": true,
+        "canSeminary": false,
+        "canLaboratory": false
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Onet-Marian Zsuzsanna": {
+    "Schedule": {
+      "Tuesday": [{ "start": "08:00", "end": "14:00" }],
+      "Friday": [{ "start": "10:00", "end": "16:00" }]
+    },
+    "MaxHoursPerWeek": 14,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Functional and Logical Programming": {
+        "canCourse": false,
+        "canSeminary": true,
+        "canLaboratory": false
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Micula Sanda": {
+    "Schedule": {
+      "Tuesday": [{ "start": "10:00", "end": "14:00" }],
+      "Wednesday": [{ "start": "14:00", "end": "18:00" }]
+    },
+    "MaxHoursPerWeek": 10,
+    "PreferredBuildings": ["FSEGA", "CENTER"],
+    "Subjects": {
+      "Probabilities and Statistics": {
+        "canCourse": true,
+        "canSeminary": false,
+        "canLaboratory": false
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Moraru Dora": {
+    "Schedule": {
+      "Tuesday": [{ "start": "16:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "14:00" }]
+    },
+    "MaxHoursPerWeek": 12,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Advanced Programming Methods": {
+        "canCourse": false,
+        "canSeminary": false,
+        "canLaboratory": true
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Borza Razvan": {
+    "Schedule": {
+      "Tuesday": [{ "start": "16:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "14:00", "end": "20:00" }]
+    },
+    "MaxHoursPerWeek": 12,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Databases": { "canCourse": false, "canSeminary": false, "canLaboratory": true }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Marc Daria": {
+    "Schedule": {
+      "Tuesday": [{ "start": "18:00", "end": "20:00" }],
+      "Thursday": [{ "start": "14:00", "end": "20:00" }]
+    },
+    "MaxHoursPerWeek": 10,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Functional and Logical Programming": {
+        "canCourse": false,
+        "canSeminary": false,
+        "canLaboratory": true
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Pop Emilia": {
+    "Schedule": {
+      "Wednesday": [{ "start": "10:00", "end": "14:00" }],
+      "Friday": [{ "start": "10:00", "end": "14:00" }]
+    },
+    "MaxHoursPerWeek": 10,
+    "PreferredBuildings": ["FSEGA", "CENTER"],
+    "Subjects": {
+      "Databases": { "canCourse": true, "canSeminary": true, "canLaboratory": false }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Sotropa Aurelian": {
+    "Schedule": {
+      "Wednesday": [{ "start": "12:00", "end": "18:00" }],
+      "Friday": [{ "start": "08:00", "end": "14:00" }]
+    },
+    "MaxHoursPerWeek": 14,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Computer Networks": { "canCourse": false, "canSeminary": false, "canLaboratory": true }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Coste Claudia Ioana": {
+    "Schedule": {
+      "Thursday": [{ "start": "08:00", "end": "14:00" }],
+      "Friday": [{ "start": "12:00", "end": "18:00" }]
+    },
+    "MaxHoursPerWeek": 14,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Databases": { "canCourse": false, "canSeminary": true, "canLaboratory": false }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Albisoru Florin": {
+    "Schedule": {
+      "Thursday": [{ "start": "08:00", "end": "14:00" }],
+      "Friday": [{ "start": "08:00", "end": "12:00" }]
+    },
+    "MaxHoursPerWeek": 12,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Probabilities and Statistics": {
+        "canCourse": false,
         "canSeminary": true,
         "canLaboratory": true
-      },
-      "Computer Systems Architecture": {
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Sarkozi Melisa": {
+    "Schedule": {
+      "Thursday": [{ "start": "16:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "16:00", "end": "20:00" }]
+    },
+    "MaxHoursPerWeek": 10,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Functional and Logical Programming": {
+        "canCourse": false,
+        "canSeminary": false,
+        "canLaboratory": true
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Petrescu Paul Razvan": {
+    "Schedule": {
+      "Friday": [{ "start": "08:00", "end": "14:00" }],
+      "Monday": [{ "start": "14:00", "end": "18:00" }]
+    },
+    "MaxHoursPerWeek": 12,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Advanced Programming Methods": {
+        "canCourse": false,
         "canSeminary": true,
+        "canLaboratory": true
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Lukacs Raul": {
+    "Schedule": {
+      "Monday": [{ "start": "10:00", "end": "16:00" }],
+      "Tuesday": [{ "start": "14:00", "end": "18:00" }]
+    },
+    "MaxHoursPerWeek": 12,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Advanced Programming Methods": {
+        "canCourse": false,
+        "canSeminary": false,
+        "canLaboratory": true
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Demian Ana Maria": {
+    "Schedule": {
+      "Monday": [{ "start": "12:00", "end": "18:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "14:00" }]
+    },
+    "MaxHoursPerWeek": 14,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Databases": { "canCourse": false, "canSeminary": false, "canLaboratory": true }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Chis Raluca": {
+    "Schedule": {
+      "Monday": [{ "start": "16:00", "end": "20:00" }],
+      "Thursday": [{ "start": "10:00", "end": "14:00" }]
+    },
+    "MaxHoursPerWeek": 10,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Advanced Programming Methods": {
+        "canCourse": false,
+        "canSeminary": false,
+        "canLaboratory": true
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Boanca Sara": {
+    "Schedule": {
+      "Tuesday": [{ "start": "08:00", "end": "12:00" }],
+      "Friday": [{ "start": "12:00", "end": "16:00" }]
+    },
+    "MaxHoursPerWeek": 10,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Functional and Logical Programming": {
+        "canCourse": false,
+        "canSeminary": false,
+        "canLaboratory": true
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Jinga Tudor": {
+    "Schedule": {
+      "Tuesday": [{ "start": "16:00", "end": "20:00" }],
+      "Thursday": [{ "start": "14:00", "end": "18:00" }]
+    },
+    "MaxHoursPerWeek": 10,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Advanced Programming Methods": {
+        "canCourse": false,
+        "canSeminary": true,
+        "canLaboratory": false
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Calin Alina": {
+    "Schedule": {
+      "Thursday": [{ "start": "08:00", "end": "12:00" }],
+      "Friday": [{ "start": "14:00", "end": "18:00" }]
+    },
+    "MaxHoursPerWeek": 10,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Functional and Logical Programming": {
+        "canCourse": false,
+        "canSeminary": true,
+        "canLaboratory": false
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Manlup Nicoleta": {
+    "Schedule": {
+      "Monday": [{ "start": "10:00", "end": "14:00" }],
+      "Wednesday": [{ "start": "14:00", "end": "18:00" }]
+    },
+    "MaxHoursPerWeek": 10,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Advanced Programming Methods": {
+        "canCourse": false,
+        "canSeminary": true,
+        "canLaboratory": false
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Iancu Mihai": {
+    "Schedule": {
+      "Tuesday": [{ "start": "08:00", "end": "12:00" }],
+      "Thursday": [{ "start": "08:00", "end": "12:00" }]
+    },
+    "MaxHoursPerWeek": 10,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Probabilities and Statistics": {
+        "canCourse": false,
+        "canSeminary": true,
+        "canLaboratory": false
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Borza Diana": {
+    "Schedule": {
+      "Tuesday": [{ "start": "16:00", "end": "20:00" }],
+      "Friday": [{ "start": "14:00", "end": "18:00" }]
+    },
+    "MaxHoursPerWeek": 10,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Computer Networks": { "canCourse": false, "canSeminary": false, "canLaboratory": true }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Mihis Alin": {
+    "Schedule": {
+      "Thursday": [{ "start": "12:00", "end": "16:00" }],
+      "Friday": [{ "start": "10:00", "end": "14:00" }]
+    },
+    "MaxHoursPerWeek": 10,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Advanced Programming Methods": {
+        "canCourse": false,
+        "canSeminary": false,
+        "canLaboratory": true
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Fabian Roberta": {
+    "Schedule": {
+      "Friday": [{ "start": "14:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "16:00", "end": "20:00" }]
+    },
+    "MaxHoursPerWeek": 12,
+    "PreferredBuildings": ["FSEGA"],
+    "Subjects": {
+      "Functional and Logical Programming": {
+        "canCourse": false,
+        "canSeminary": false,
         "canLaboratory": true
       }
     },
