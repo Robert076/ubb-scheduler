@@ -26,28 +26,62 @@ void GroupRepository::load(const string &filename)
         exit(1);
     }
 
-    // Iterate through Groups (e.g., "911", "931")
-    for (auto &[groupId, details] : data.items())
+    for (auto &[key, value] : data.items())
     {
-        Group group(groupId);
+        Group group(key);
 
-        int size = details.value("Size", 0);
-        string language = details.value("Language", "English");
-        int semSplit = details.value("SeminarySplit", 1);
-        int labSplit = details.value("LaboratorySplit", 1);
+        // Safely load Size (default to 30 if missing)
+        group.setSize(value.value("Size", 30));
 
-        group.setDetails(size, language, semSplit, labSplit);
-
-        // Parse Subjects list
-        if (details.contains("Subjects"))
+        // Safely load Language
+        // The error likely happened here or in Subjects if data was malformed
+        if (value.contains("Language") && value["Language"].is_string())
         {
-            for (const auto &subjectName : details["Subjects"])
+            group.setLanguage(value["Language"]);
+        }
+        else
+        {
+            group.setLanguage("English");
+        }
+
+        // --- THE FIX IS HERE ---
+        // We strictly check if "Subjects" is an array of strings.
+        if (value.contains("Subjects"))
+        {
+            const auto &subjectsJson = value["Subjects"];
+
+            if (subjectsJson.is_array())
             {
-                group.addSubject(subjectName);
+                // Case A: It's a standard List ["Math", "Physics"]
+                for (const auto &subj : subjectsJson)
+                {
+                    if (subj.is_string())
+                    {
+                        group.addSubject(subj.get<string>());
+                    }
+                }
+            }
+            else if (subjectsJson.is_object())
+            {
+                // Case B: It's an Object {"Math": {}, "Physics": {}} (Teacher format copy-paste?)
+                // We handle this gracefully by just taking the keys.
+                cout << "WARNING: Group " << key << " has 'Subjects' as an Object, expected Array. Attempting to parse keys..." << endl;
+                for (auto &[subjName, val] : subjectsJson.items())
+                {
+                    group.addSubject(subjName);
+                }
+            }
+            else
+            {
+                cerr << "ERROR: Group " << key << " has invalid 'Subjects' format." << endl;
             }
         }
 
-        groups.insert({groupId, group});
+        // Load Splits (Optional)
+        group.setSeminarySplit(value.value("SeminarySplit", 1));
+        group.setLaboratorySplit(value.value("LaboratorySplit", 1));
+
+        groups.insert({key, group});
     }
 
     cout << "Successfully loaded " << groups.size() << " groups." << endl;

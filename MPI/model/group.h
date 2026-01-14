@@ -1,39 +1,44 @@
+#pragma once
 #include <string>
 #include <vector>
-
-using namespace std;
 
 class Group
 {
 private:
-    string id; // e.g., "911"
-    int size;
-    string language;
-    vector<string> subjects; // List of subject names they attend
+    std::string id;
+    int size = 30; // Default size
+    std::string language = "English";
 
-    int seminarySplit;   // e.g., 1 (Whole group)
-    int laboratorySplit; // e.g., 2 (Half group)
+    // List of subject names this group attends
+    std::vector<std::string> subjects;
+
+    // How many subgroups for seminars/labs?
+    // 1 = Whole group
+    // 2 = Half group (Semigroup)
+    int seminarySplit = 1;
+    int laboratorySplit = 1;
 
 public:
-    Group(string id) : id(id) {}
+    Group() {} // Default constructor
+    Group(std::string id) : id(id) {}
 
-    void setDetails(int s, const string &lang, int semSplit, int labSplit)
-    {
-        size = s;
-        language = lang;
-        seminarySplit = semSplit;
-        laboratorySplit = labSplit;
-    }
-
-    void addSubject(const string &subjectName)
-    {
-        subjects.push_back(subjectName);
-    }
-
-    // Getters
-    string getId() const { return id; }
+    // --- Getters ---
+    std::string getId() const { return id; }
     int getSize() const { return size; }
-    const vector<string> &getSubjects() const { return subjects; }
+    std::string getLanguage() const { return language; }
+    const std::vector<std::string> &getSubjects() const { return subjects; }
     int getSeminarySplit() const { return seminarySplit; }
     int getLaboratorySplit() const { return laboratorySplit; }
+
+    // --- Setters (ADDED THESE TO FIX ERRORS) ---
+    void setSize(int s) { size = s; }
+    void setLanguage(const std::string &l) { language = l; }
+
+    void addSubject(const std::string &subject)
+    {
+        subjects.push_back(subject);
+    }
+
+    void setSeminarySplit(int split) { seminarySplit = split; }
+    void setLaboratorySplit(int split) { laboratorySplit = split; }
 };

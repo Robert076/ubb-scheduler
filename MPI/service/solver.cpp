@@ -1,19 +1,62 @@
 #include "solver.h"
 #include <algorithm>
 #include <random>
-#include <fstream>
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
+// Helper to save output with TYPE included
+void saveScheduleToFile(const vector<ClassSession> &sessions, int rank)
+{
+    string filename = "schedule_output_" + to_string(rank) + ".json";
+    ofstream out(filename);
+
+    out << "[\n";
+    for (size_t i = 0; i < sessions.size(); ++i)
+    {
+        const auto &s = sessions[i];
+
+        // 1. Determine Type String
+        string typeStr = "Unknown";
+        if (s.type == ClassType::COURSE)
+            typeStr = "Course";
+        else if (s.type == ClassType::SEMINARY)
+            typeStr = "Seminar";
+        else if (s.type == ClassType::LABORATORY)
+            typeStr = "Laboratory";
+
+        // 2. Determine Frequency String
+        string freqStr = "Weekly";
+        if (s.weekMask == 1)
+            freqStr = "Odd Week";
+        if (s.weekMask == 2)
+            freqStr = "Even Week";
+
+        out << "  {\n";
+        out << "    \"day\": \"" << s.day << "\",\n";
+        out << "    \"start\": \"" << s.startTime << "\",\n";
+        out << "    \"end\": \"" << s.endTime << "\",\n";
+        out << "    \"type\": \"" << typeStr << "\",\n"; // <--- ADDED HERE
+        out << "    \"group\": \"" << s.groupId << "\",\n";
+        out << "    \"subgroup\": \"" << s.subGroup << "\",\n";
+        out << "    \"subject\": \"" << s.subjectName << "\",\n";
+        out << "    \"teacher\": \"" << s.teacherName << "\",\n";
+        out << "    \"room\": \"" << s.roomName << "\",\n";
+        out << "    \"frequency\": \"" << freqStr << "\"\n";
+        out << "  }" << (i < sessions.size() - 1 ? "," : "") << "\n";
+    }
+    out << "]\n";
+    out.close();
+    cout << "[Rank " << rank << "] Saved schedule to " << filename << endl;
+}
+
 bool Solver::solve(vector<ClassSession> &sessions, int rank)
 {
-    // 1. Shuffle the sessions based on Rank
-    // This ensures every MPI node tries a different order!
-    std::mt19937 g(rank + 1); // Seed with rank
+    // 1. Shuffle
+    std::mt19937 g(rank + 1);
     std::shuffle(sessions.begin(), sessions.end(), g);
 
-    // We need to keep track of successfully scheduled sessions to check for conflicts
     vector<ClassSession> scheduledSoFar;
 
     // 2. Iterate through every unscheduled session
@@ -40,8 +83,8 @@ bool Solver::solve(vector<ClassSession> &sessions, int rank)
                     if (placed)
                         break;
 
-                    // --- FIX START: Calculate Duration FIRST ---
-                    int duration = 2; // Default fallback
+                    // Calculate Duration
+                    int duration = 2;
                     if (ctx.subjects.getAll().count(session.subjectName))
                     {
                         const auto &sub = ctx.subjects.getSubject(session.subjectName);
@@ -52,35 +95,31 @@ bool Solver::solve(vector<ClassSession> &sessions, int rank)
                         else
                             duration = sub.getLaboratoryLength();
                     }
-                    // --- FIX END ---
 
-                    // Now we can calculate the end time safely
+                    if (duration == 0)
+                        duration = 2; // Safety fallback
+
                     string start = (h < 10 ? "0" : "") + to_string(h) + ":00";
                     string end = (h + duration < 10 ? "0" : "") + to_string(h + duration) + ":00";
 
-                    // Stop if this session goes past 8 PM (20:00)
                     if (h + duration > 20)
                         continue;
 
-                    // Try every Room
                     for (const auto &[roomName, room] : place.getRooms())
                     {
 
-                        // 1. Static Check (Capacity, Flags)
+                        // 1. Static Checks
                         if (!ScheduleVerifier::isRoomSuitable(session, room, buildingName))
                             continue;
 
-                        // 2. Check Capacity
                         int groupSize = ctx.groups.getGroup(session.groupId).getSize();
-                        // If it's a split (lab/seminar), half the size roughly
                         if (!session.subGroup.empty())
                             groupSize /= 2;
-
                         if (room.capacity < groupSize)
                             continue;
 
-                        // 3. Dynamic Check (Conflicts)
-                        session.roomName = roomName; // Tentative assignment
+                        // 2. Dynamic Check
+                        session.roomName = roomName;
                         session.buildingName = buildingName;
                         session.day = day;
                         session.startTime = start;
@@ -88,7 +127,6 @@ bool Solver::solve(vector<ClassSession> &sessions, int rank)
 
                         if (ScheduleVerifier::isSlotFree(scheduledSoFar, session, day, start, end))
                         {
-                            // FOUND A SLOT!
                             placed = true;
                             scheduledSoFar.push_back(session);
                             break;
@@ -99,39 +137,9 @@ bool Solver::solve(vector<ClassSession> &sessions, int rank)
         }
 
         if (!placed)
-        {
-            // Greedy failure: Could not place this specific session anywhere
             return false;
-        }
     }
 
-    // Success! Copy the result back
     sessions = scheduledSoFar;
     return true;
-}
-
-void saveScheduleToFile(const vector<ClassSession> &sessions, int rank)
-{
-    // Create a filename like "schedule_rank_0.json"
-    string filename = "schedule_output_" + to_string(rank) + ".json";
-    ofstream out(filename);
-
-    // Manual JSON construction to avoid dependency issues, or use nlohmann/json
-    out << "[\n";
-    for (size_t i = 0; i < sessions.size(); ++i)
-    {
-        const auto &s = sessions[i];
-        out << "  {\n";
-        out << "    \"day\": \"" << s.day << "\",\n";
-        out << "    \"start\": \"" << s.startTime << "\",\n";
-        out << "    \"end\": \"" << s.endTime << "\",\n";
-        out << "    \"group\": \"" << s.groupId << "\",\n";
-        out << "    \"subgroup\": \"" << s.subGroup << "\",\n";
-        out << "    \"subject\": \"" << s.subjectName << "\",\n";
-        out << "    \"room\": \"" << s.roomName << "\"\n";
-        out << "  }" << (i < sessions.size() - 1 ? "," : "") << "\n";
-    }
-    out << "]\n";
-    out.close();
-    cout << "[Rank " << rank << "] Saved schedule to " << filename << endl;
 }

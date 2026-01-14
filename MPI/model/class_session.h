@@ -26,10 +26,11 @@ struct ClassSession
     std::string startTime;
     std::string endTime;
 
-    // Helper to print itself for debugging
+    int weekMask = 3;
+
     std::string toString() const
     {
-        return "[" + day + " " + startTime + "] " + groupId +
-               " " + subjectName + " (" + roomName + ")";
+        std::string weekStr = (weekMask == 3) ? "" : (weekMask == 1 ? "[Odd]" : "[Even]");
+        return weekStr + "[" + day + " " + startTime + "] ...";
     }
 };
