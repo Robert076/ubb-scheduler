@@ -7,6 +7,5 @@
 class WorkloadGenerator
 {
 public:
-    // Generates the list of ALL unassigned sessions needed for the university
     std::vector<ClassSession> generate(const DataContext &ctx);
 };

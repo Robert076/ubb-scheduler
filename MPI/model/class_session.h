@@ -12,7 +12,7 @@ struct ClassSession
 {
     // Who and What
     std::string subjectName;
-    ClassType type;       // Is it a Course, Lab, or Seminary?
+    ClassType type;       // Course, Lab, or Seminary
     std::string groupId;  // "911"
     std::string subGroup; // "1" or "2" (for labs/seminars), or "" for courses
 

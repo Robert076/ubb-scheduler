@@ -4,7 +4,6 @@
 #include "service/solver.h"
 #include <iostream>
 
-// Forward declaration of the helper we just added (or put it in a header)
 void saveScheduleToFile(const std::vector<ClassSession> &sessions, int rank);
 
 int main(int argc, char **argv)
@@ -29,17 +28,15 @@ int main(int argc, char **argv)
     Solver solver(ctx);
     double startTime = MPI_Wtime();
 
-    // Run the solver
     bool success = solver.solve(sessions, rank);
 
     double endTime = MPI_Wtime();
 
     if (success)
     {
-        std::cout << "[Rank " << rank << "] FOUND A SOLUTION in "
-                  << (endTime - startTime) << "s!" << std::endl;
+        std::cout << "[Rank " << rank << "] Found solution in "
+                  << (endTime - startTime) << "seconds!" << std::endl;
 
-        // Save to file instead of crashing
         saveScheduleToFile(sessions, rank);
     }
     else
@@ -47,7 +44,6 @@ int main(int argc, char **argv)
         std::cout << "[Rank " << rank << "] Could not find a schedule." << std::endl;
     }
 
-    // Wait for everyone to finish before quitting (Clean Exit)
     MPI_Barrier(MPI_COMM_WORLD);
     MPI_Finalize();
     return 0;
