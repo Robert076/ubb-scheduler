@@ -9,8 +9,8 @@
 
 **Validation Phase:**
 - `ValidationOrchestrator.java` runs 5 validators in order:
-    - V0: `TeacherDefinitionValidator` (sequential, blocking)
-    - V1-V4: `TeacherCapacityValidator`, `RoomCapacityValidator`, `TeacherAvailabilityValidator`, `TimeSlotCollisionValidator` (parallel)
+    - `TeacherDefinitionValidator` (sequential, blocking)
+    - `TeacherCapacityValidator`, `RoomCapacityValidator`, `TeacherAvailabilityValidator`, `TimeSlotCollisionValidator` (parallel)
 - Results aggregated and displayed via `ConsoleUI.java`
 
 **Generation Phase:**
@@ -26,10 +26,10 @@
 
 | Component | Threading | Complexity | Details |
 |-----------|-----------|------------|---------|
-| **TeacherCapacityValidator (V1+V5)** | Parallel by subjects | O(subjects × teachers) | Each subject analyzed on separate thread; checks teacher hours vs. required hours + language matching |
-| **RoomCapacityValidator (V2)** | Parallel by places | O(places × rooms) | Each building evaluated independently; validates room capacity per activity type |
-| **TeacherAvailabilityValidator (V3+V6)** | Sequential aggregate | O(teachers + buildings) | Global stats: total teacher hours vs. total required; building distribution analysis |
-| **TimeSlotCollisionValidator (V4)** | Parallel matrix build | O(slots × days) | Builds 2D collision matrix; detects teacher/room bottlenecks at specific times |
+| **TeacherCapacityValidator** | Parallel by subjects | O(subjects × teachers) | Each subject analyzed on separate thread; checks teacher hours vs. required hours + language matching |
+| **RoomCapacityValidator** | Parallel by places | O(places × rooms) | Each building evaluated independently; validates room capacity per activity type |
+| **TeacherAvailabilityValidator** | Sequential aggregate | O(teachers + buildings) | Global stats: total teacher hours vs. total required; building distribution analysis |
+| **TimeSlotCollisionValidator** | Parallel matrix build | O(slots × days) | Builds 2D collision matrix; detects teacher/room bottlenecks at specific times |
 | **TimetableGenerator (Generation)** | Parallel by subjects | O(subjects) with backtracking | Fixed thread pool = CPU cores; each subject scheduled independently; uses ConcurrentHashMap for state |
 
 **Blocking Rules:**
