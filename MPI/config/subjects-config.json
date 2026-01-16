@@ -3,30 +3,92 @@
     "MainTeacher": "Molnar Arthur",
     "Language": "English",
     "CoursesPerWeek": 1,
-    "CourseLenght": 2,
+    "CourseLength": 2,
     "SeminarsPerWeek": 1,
-    "SeminarLenght": 2,
+    "SeminarLength": 2,
     "LaboratoriesPerWeek": 1,
-    "LaboratoriesLenght": 2
+    "LaboratoriesLength": 2
   },
   "Computer Systems Architecture": {
     "MainTeacher": "Vancea Alexandru",
     "Language": "English",
     "CoursesPerWeek": 1,
-    "CourseLenght": 2,
-    "SeminarsPerWeek": 1,
-    "SeminarLenght": 2,
+    "CourseLength": 2,
+    "SeminarsPerWeek": 0.5,
+    "SeminarLength": 2,
     "LaboratoriesPerWeek": 1,
-    "LaboratoriesLenght": 2
+    "LaboratoriesLength": 2
   },
-  "Mobile Applications": {
-    "MainTeacher": "Dan Cojocar",
+  "Computational Logic": {
+    "MainTeacher": "Lupea Mihaela",
     "Language": "English",
     "CoursesPerWeek": 1,
-    "CourseLenght": 2,
-    "SeminarsPerWeek": 0,
-    "SeminarLenght": 0,
+    "CourseLength": 2,
+    "SeminarsPerWeek": 1,
+    "SeminarLength": 2
+  },
+  "Algebra": {
+    "MainTeacher": "Crivei Septimiu",
+    "Language": "English",
+    "CoursesPerWeek": 1,
+    "CourseLength": 2,
+    "SeminarsPerWeek": 1,
+    "SeminarLength": 2
+  },
+  "Mathematical Analysis": {
+    "MainTeacher": "Nechita Mihai",
+    "Language": "English",
+    "CoursesPerWeek": 1,
+    "CourseLength": 2,
+    "SeminarsPerWeek": 1,
+    "SeminarLength": 2
+  },
+  "Computer Networks": {
+    "MainTeacher": "Darabant Sergiu",
+    "Language": "English",
+    "CoursesPerWeek": 1,
+    "CourseLength": 2,
+    "LaboratoriesPerWeek": 1,
+    "LaboratoriesLength": 2
+  },
+  "Functional and Logical Programming": {
+    "MainTeacher": "Horea Pop",
+    "Language": "English",
+    "CoursesPerWeek": 1,
+    "CourseLength": 2,
+    "SeminarsPerWeek": 0.5,
+    "SeminarLength": 2,
     "LaboratoriesPerWeek": 0.5,
-    "LaboratoriesLenght": 2
+    "LaboratoriesLength": 2
+  },
+  "Probabilities and Statistics": {
+    "Main Teacher": "Micula Sanda",
+    "Language": "English",
+    "CoursesPerWeek": 1,
+    "CourseLength": 2,
+    "SeminarsPerWeek": 0.5,
+    "SeminarLength": 2,
+    "LaboratoriesPerWeek": 0.5,
+    "LaboratoriesLength": 2
+  },
+  "Advanced Programming Methods": {
+    "Main Teacher": "Craciun Florin",
+    "Language": "English",
+    "CoursesPerWeek": 1,
+    "CourseLength": 2,
+    "SeminarsPerWeek": 1,
+    "SeminarLength": 2,
+    "LaboratoriesPerWeek": 1,
+    "LaboratoriesLength": 2
+  },
+  "Databases": {
+    "Main Teacher": "Pop Emilia",
+    "Language": "English",
+    "CoursesPerWeek": 1,
+    "CourseLength": 2,
+    "SeminarsPerWeek": 0.5,
+    "SeminarLength": 2,
+    "LaboratoriesPerWeek": 1,
+    "LaboratoriesLength": 2
   }
 }

@@ -1,63 +1,67 @@
+#pragma once
 #include <string>
-
-using namespace std;
 
 class Subject
 {
 private:
-    string name;
-    string mainTeacher;
-    string language;
+    std::string name;
+    std::string mainTeacher;
+    std::string language; // Added this field
 
-    // Frequencies (double to handle 0.5 cases like bi-weekly labs)
-    double coursesPerWeek;
-    double seminarsPerWeek;
-    double laboratoriesPerWeek;
+    // Frequencies (Sessions per week)
+    double coursesPerWeek = 0;
+    double seminarsPerWeek = 0;
+    double laboratoriesPerWeek = 0;
 
-    // Durations (in hours)
-    int courseLength;
-    int seminarLength;
-    int laboratoryLength;
+    // Durations (Hours per session)
+    int courseLength = 0;
+    int seminarLength = 0;
+    int laboratoryLength = 0;
+
+    // Override for Laboratory Splits
+    int labSplitOverride = 0;
 
 public:
-    Subject(string name) : name(name) {}
+    Subject() {}
+    Subject(std::string name) : name(name) {}
 
     // Getters
-    string getName() const { return name; }
-    string getMainTeacher() const { return mainTeacher; }
-    string getLanguage() const { return language; }
+    std::string getName() const { return name; }
+    std::string getMainTeacher() const { return mainTeacher; }
+    std::string getLanguage() const { return language; } // Added Getter
 
     double getCoursesPerWeek() const { return coursesPerWeek; }
-    int getCourseLength() const { return courseLength; }
-
     double getSeminarsPerWeek() const { return seminarsPerWeek; }
-    int getSeminarLength() const { return seminarLength; }
-
     double getLaboratoriesPerWeek() const { return laboratoriesPerWeek; }
+
+    int getCourseLength() const { return courseLength; }
+    int getSeminarLength() const { return seminarLength; }
     int getLaboratoryLength() const { return laboratoryLength; }
 
+    int getLabSplitOverride() const { return labSplitOverride; }
+
     // Setters
-    void setDetails(const string &teacher, const string &lang)
+    void setMainTeacher(const std::string &t) { mainTeacher = t; }
+    void setLanguage(const std::string &l) { language = l; } // Added Setter
+
+    void setCourseConfig(double freq, int len)
     {
-        mainTeacher = teacher;
-        language = lang;
+        coursesPerWeek = freq;
+        courseLength = len;
+    }
+    void setSeminarConfig(double freq, int len)
+    {
+        seminarsPerWeek = freq;
+        seminarLength = len;
+    }
+    void setLaboratoryConfig(double freq, int len)
+    {
+        laboratoriesPerWeek = freq;
+        laboratoryLength = len;
     }
 
-    void setCourseConfig(double count, int length)
+    void setLabSplitOverride(int overrideVal)
     {
-        coursesPerWeek = count;
-        courseLength = length;
-    }
-
-    void setSeminarConfig(double count, int length)
-    {
-        seminarsPerWeek = count;
-        seminarLength = length;
-    }
-
-    void setLaboratoryConfig(double count, int length)
-    {
-        laboratoriesPerWeek = count;
-        laboratoryLength = length;
+        labSplitOverride = overrideVal;
     }
 };
