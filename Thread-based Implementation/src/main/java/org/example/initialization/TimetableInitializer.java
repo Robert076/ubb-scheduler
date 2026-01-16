@@ -2,11 +2,12 @@ package org.example.initialization;
 
 import org.example.context.TimetableDataContext;
 import org.example.repository.*;
+import org.example.service.generation.*;
 import org.example.ui.ConsoleUI;
 import org.example.service.validation.ValidationOrchestrator;
 
 /**
- * TimetableInitializer - Orchestrates the entire initialization flow.
+ * TimetableInitializer - Orchestrates the entire initialization and generation flow.
  * ZERO prints here - all output delegated to ConsoleUI.
  * This is pure SERVICE LOGIC ONLY.
  */
@@ -15,7 +16,7 @@ public class TimetableInitializer {
     private PlaceRepository placeRepository;
 
     /**
-     * Run complete initialization pipeline
+     * Run complete initialization and generation pipeline
      */
     public void initialize() {
         try {
@@ -97,7 +98,6 @@ public class TimetableInitializer {
             ConsoleUI.printValidationPhase();
 
             // SERVICE: Create orchestrator and run validations
-            // Use the already-initialized dataContext (stored in this.dataContext)
             ValidationOrchestrator orchestrator = new ValidationOrchestrator(
                     this.dataContext,
                     this.placeRepository
@@ -116,12 +116,43 @@ public class TimetableInitializer {
 
             // User wants to proceed
             ConsoleUI.printUserConfirmed();
-            ConsoleUI.printNextSteps();
 
+            // Generate timetable
+            if (!generateTimetable()) {
+                ConsoleUI.printError("Timetable generation failed");
+                return false;
+            }
+
+            ConsoleUI.printNextSteps();
             return true;
 
         } catch (Exception e) {
             ConsoleUI.printError("Validation failed: " + e.getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * Generate timetable
+     * @return true if successful, false otherwise
+     */
+    private boolean generateTimetable() {
+        try {
+            // UI: show generation phase header
+            ConsoleUI.printGenerationPhase();
+
+            // SERVICE: Create generator and run generation
+            TimetableGenerator generator = new TimetableGenerator(this.dataContext);
+            GenerationResult result = generator.generate();
+            generator.shutdown();
+
+            // UI: Display generation results
+            ConsoleUI.displayGenerationResults(result);
+
+            return result.success();
+
+        } catch (Exception e) {
+            ConsoleUI.printError("Generation failed: " + e.getMessage());
             return false;
         }
     }

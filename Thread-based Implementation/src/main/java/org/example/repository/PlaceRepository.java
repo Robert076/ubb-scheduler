@@ -33,7 +33,12 @@ public class PlaceRepository {
                 objectMapper.getTypeFactory().constructMapType(HashMap.class, String.class, Place.class));
 
         // Set name for each place (from JSON key)
-        parsedPlaces.forEach((name, place) -> place.setName(name));
+        parsedPlaces.forEach((name, place) -> {
+            place.setName(name);
+            if (place.getRooms() != null) {
+                place.getRooms().forEach((roomId, room) -> room.setId(roomId));
+            }
+        });
 
         return parsedPlaces;
     }

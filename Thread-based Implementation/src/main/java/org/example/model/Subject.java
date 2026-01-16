@@ -128,6 +128,22 @@ public class Subject {
                (int) (laboratoriesPerWeek * laboratoriesLenght);
     }
 
+    public int getCourseHours() {
+        return coursesPerWeek * courseLenght;
+    }
+
+    public int getSeminarHours() {
+        return seminarsPerWeek * seminarLenght;
+    }
+
+    public int getLaboratoryHours() {
+        return (int) (laboratoriesPerWeek * laboratoriesLenght);
+    }
+
+    public int getTotalHours() {
+        return getTotalHoursPerWeek();
+    }
+
     @Override
     public String toString() {
         return "Subject{" +

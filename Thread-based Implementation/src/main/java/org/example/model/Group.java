@@ -97,6 +97,14 @@ public class Group {
         return subjects != null && subjects.contains(subjectName);
     }
 
+    public int getSeminarSplitCount() {
+        return seminarySplit;
+    }
+
+    public int getLaboratorySplitCount() {
+        return laboratorySplit;
+    }
+
     @Override
     public String toString() {
         return "Group{" +

@@ -1,6 +1,7 @@
 package org.example.ui;
 
 import org.example.context.TimetableDataContext;
+import org.example.service.generation.*;
 import org.example.service.validation.ValidationOrchestrator;
 import org.example.service.validation.ValidationResult;
 import java.util.*;
@@ -16,6 +17,7 @@ public class ConsoleUI {
     private static final String WARNING_COLOR = "\u001B[33m";   // Yellow
     private static final String ERROR_COLOR = "\u001B[31m";     // Red
     private static final String INFO_COLOR = "\u001B[34m";      // Blue
+    private static final String DEBUG_COLOR = "\u001B[35m";     // Magenta
     private static final String RESET_COLOR = "\u001B[0m";      // Reset
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -158,58 +160,78 @@ public class ConsoleUI {
                 System.out.println(ERROR_COLOR + "        • " + item + RESET_COLOR);
             }
         }
+    }
 
-        // Time Slot Collision details
-        if (details.containsKey("bottlenecks")) {
-            @SuppressWarnings("unchecked")
-            List<Map<String, Object>> bottlenecks = (List<Map<String, Object>>) details.get("bottlenecks");
+    // ==================== GENERATION PHASE ====================
 
-            if (!bottlenecks.isEmpty()) {
-                System.out.println(WARNING_COLOR + "      Time-Slot Distribution (Areas for Improvement):" + RESET_COLOR);
+    public static void printGenerationPhase() {
+        System.out.println(INFO_COLOR + "\n[PHASE 3] TIMETABLE GENERATION" + RESET_COLOR);
+        System.out.println(INFO_COLOR + "━".repeat(50) + RESET_COLOR);
+    }
 
-                // Group by day
-                Map<String, List<Map<String, Object>>> byDay = new HashMap<>();
-                for (Map<String, Object> bn : bottlenecks) {
-                    String day = (String) bn.get("day");
-                    byDay.computeIfAbsent(day, k -> new ArrayList<>()).add(bn);
-                }
+    /**
+     * Display generation results with detailed metrics
+     */
+    public static void displayGenerationResults(GenerationResult result) {
+        System.out.println();
+        System.out.println(HEADER_COLOR + "╔════════════════════════════════════════════╗" + RESET_COLOR);
+        System.out.println(HEADER_COLOR + "║     GENERATION RESULTS SUMMARY             ║" + RESET_COLOR);
+        System.out.println(HEADER_COLOR + "╚════════════════════════════════════════════╝" + RESET_COLOR);
+        System.out.println();
 
-                // Display by day
-                String[] dayOrder = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
-                for (String day : dayOrder) {
-                    if (byDay.containsKey(day)) {
-                        List<Map<String, Object>> dayBottlenecks = byDay.get(day);
-                        System.out.println(WARNING_COLOR + "        📅 " + day + ":" + RESET_COLOR);
-                        for (Map<String, Object> bn : dayBottlenecks) {
-                            String hour = (String) bn.get("hour");
-                            String type = (String) bn.get("type");
-                            int value = (int) bn.get("value");
+        if (result.success()) {
+            System.out.println(SUCCESS_COLOR + "✓ GENERATION COMPLETED SUCCESSFULLY" + RESET_COLOR);
+        } else {
+            System.out.println(ERROR_COLOR + "✗ GENERATION FAILED: " + result.errorMessage() + RESET_COLOR);
+        }
 
-                            String typeIcon = switch (type) {
-                                case "SEVERE_TEACHER_EXCESS" -> "👨‍🏫";
-                                case "SEVERE_ROOM_EXCESS" -> "🏛️ ";
-                                default -> "⚠️ ";
-                            };
+        System.out.println();
+        System.out.println("📊 STATISTICS:");
+        System.out.println("  • Total Activities Scheduled: " + result.getTotalActivities());
+        System.out.println("  • Success Rate: " + String.format("%.1f%%", result.getSuccessRate()));
+        System.out.println("  • Total Time: " + result.getTotalTimeMs() + "ms");
 
-                            String typeDesc = switch (type) {
-                                case "SEVERE_TEACHER_EXCESS" -> "Too many teachers, not enough rooms";
-                                case "SEVERE_ROOM_EXCESS" -> "Too many rooms, not enough teachers";
-                                default -> "Mild imbalance";
-                            };
+        // Display phase metrics
+        System.out.println();
+        System.out.println("⏱️  PHASE BREAKDOWN:");
+        for (Map.Entry<String, Long> entry : result.metrics().getPhaseTimes().entrySet()) {
+            System.out.println("  • " + entry.getKey() + ": " + entry.getValue() + "ms");
+        }
 
-                            System.out.println(WARNING_COLOR + "          " + typeIcon + " " + hour + " - " + typeDesc + RESET_COLOR);
-                        }
-                    }
-                }
+        // Display subject metrics
+        System.out.println();
+        System.out.println("📚 SUBJECT SCHEDULING:");
+        for (TimetableGenerator.SubjectGenerationResult subjectResult : result.subjectResults()) {
+            String status = subjectResult.success() ? SUCCESS_COLOR + "✓" : ERROR_COLOR + "✗";
+            System.out.println(status + " " + RESET_COLOR + subjectResult.subjectName() +
+                    " - " + subjectResult.scheduledHours() + " hours (" + subjectResult.executionTimeMs() + "ms)");
+        }
 
-                // Print health score
-                if (details.containsKey("healthScore")) {
-                    int healthScore = (int) details.get("healthScore");
-                    String healthIndicator = healthScore >= 80 ? "✓" : healthScore >= 60 ? "⚠" : "✗";
-                    System.out.println(INFO_COLOR + "        Health Score: " + healthIndicator + " " + healthScore + "% (100% = perfect balance)" + RESET_COLOR);
-                }
+        // Display detailed metrics
+        System.out.println();
+        System.out.println("🔍 DETAILED METRICS:");
+        for (Map.Entry<String, String> entry : result.metrics().getMetrics().entrySet()) {
+            System.out.println("  • " + entry.getKey() + ": " + entry.getValue());
+        }
+
+        if (!result.metrics().getErrors().isEmpty()) {
+            System.out.println();
+            System.out.println(ERROR_COLOR + "⚠️  ERRORS ENCOUNTERED:" + RESET_COLOR);
+            for (String error : result.metrics().getErrors()) {
+                System.out.println("  • " + error);
             }
         }
+
+        System.out.println();
+        System.out.println("─".repeat(50));
+
+        if (result.success()) {
+            System.out.println(SUCCESS_COLOR + "✓ Timetable successfully generated!" + RESET_COLOR);
+        } else {
+            System.out.println(ERROR_COLOR + "✗ Timetable generation had issues. Check above." + RESET_COLOR);
+        }
+
+        System.out.println();
     }
 
     // ==================== SUCCESS & FAILURE ====================
@@ -219,7 +241,7 @@ public class ConsoleUI {
     }
 
     public static void printNextSteps() {
-        System.out.println(INFO_COLOR + "ℹ Next: Implement TimetableGenerator layer" + RESET_COLOR);
+        System.out.println(INFO_COLOR + "ℹ Next: Export schedule or view detailed timetable" + RESET_COLOR);
         System.out.println();
     }
 

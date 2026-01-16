@@ -7,6 +7,8 @@ import java.util.Objects; /**
  * Model class representing a classroom/room in a building.
  */
 public class Room {
+    private String id;
+
     @JsonProperty("Capacity")
     private int capacity;
 
@@ -15,9 +17,18 @@ public class Room {
 
     public Room() {}
 
-    public Room(int capacity, List<String> flags) {
+    public Room(String id, int capacity, List<String> flags) {
+        this.id = id;
         this.capacity = capacity;
         this.flags = flags;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public int getCapacity() {

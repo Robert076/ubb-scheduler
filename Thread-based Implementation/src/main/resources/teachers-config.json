@@ -50,9 +50,10 @@
   },
   "Dan Cojocar": {
     "Schedule": {
-      "Monday": [{ "start": "08:00", "end": "16:00" }],
-      "Tuesday": [{ "start": "08:00", "end": "16:00" }],
-      "Wednesday": [{ "start": "12:00", "end": "20:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "12:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 20,
     "PreferredBuildings": ["FSEGA", "CENTER"],

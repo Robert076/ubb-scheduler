@@ -1,6 +1,8 @@
 package org.example.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -107,6 +109,14 @@ public class Teacher {
 
     public boolean speaksLanguage(String language) {
         return languages != null && languages.contains(language);
+    }
+
+    public List<String> getTeachesSubjects() {
+        return subjects != null ? new ArrayList<>(subjects.keySet()) : new ArrayList<>();
+    }
+
+    public int getTotalHours() {
+        return maxHoursPerWeek;
     }
 
     @Override
