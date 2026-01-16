@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty; /**
  * Model class representing a subject capability for a teacher.
  */
 public class SubjectCapability {
+    @JsonProperty("canCourse")
+    private boolean canCourse;
+
     @JsonProperty("canSeminary")
     private boolean canSeminary;
 
@@ -12,9 +15,18 @@ public class SubjectCapability {
 
     public SubjectCapability() {}
 
-    public SubjectCapability(boolean canSeminary, boolean canLaboratory) {
+    public SubjectCapability(boolean canCourse, boolean canSeminary, boolean canLaboratory) {
+        this.canCourse = canCourse;
         this.canSeminary = canSeminary;
         this.canLaboratory = canLaboratory;
+    }
+
+    public boolean isCanCourse() {
+        return canCourse;
+    }
+
+    public void setCanCourse(boolean canCourse) {
+        this.canCourse = canCourse;
     }
 
     public boolean isCanSeminary() {
@@ -36,7 +48,8 @@ public class SubjectCapability {
     @Override
     public String toString() {
         return "SubjectCapability{" +
-                "canSeminary=" + canSeminary +
+                "canCourse=" + canCourse +
+                ", canSeminary=" + canSeminary +
                 ", canLaboratory=" + canLaboratory +
                 '}';
     }

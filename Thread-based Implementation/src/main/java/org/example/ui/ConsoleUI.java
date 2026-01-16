@@ -278,7 +278,7 @@ public class ConsoleUI {
             if (!activity.day().equalsIgnoreCase(currentDay)) {
                 currentDay = activity.day().toUpperCase();
                 System.out.println("\n" + INFO_COLOR + "📅 " + currentDay + RESET_COLOR);
-                System.out.println("─".repeat(80));
+                System.out.println("─".repeat(125));
             }
 
             String timeStr = String.format("%s - %s", activity.startTime(), activity.endTime());
@@ -289,16 +289,22 @@ public class ConsoleUI {
                 default -> RESET_COLOR;
             };
 
-            String groupDisplay = "COURSE".equals(activity.activityType()) ? "ALL_GROUPS" : activity.groupId();
-            System.out.printf("  %-15s | %s%-12s%s | %-30s | %-15s | %-10s%n",
+            String groupDisplay = "COURSE".equals(activity.activityType()) ? "ALL" : activity.groupId();
+            if (!"COURSE".equals(activity.activityType()) && activity.subgroup() != null && !activity.subgroup().isEmpty()) {
+                groupDisplay += "/" + activity.subgroup();
+            }
+
+            System.out.printf("  %-15s | %s%-11s%s | Gr: %-7s | %-5s | %-10s | %-35s | %-20s%n",
                     timeStr,
                     typeColor, activity.activityType(), RESET_COLOR,
+                    groupDisplay,
+                    activity.roomId(),
+                    activity.frequency(),
                     activity.subjectName(),
-                    activity.teacherName(),
-                    activity.roomId() + " (Gr: " + groupDisplay + ")"
+                    activity.teacherName()
             );
         }
-        System.out.println("\n" + "─".repeat(80));
+        System.out.println("\n" + "─".repeat(125));
     }
 
     public static void printUserConfirmed() {

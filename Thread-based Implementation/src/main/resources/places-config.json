@@ -1,82 +1,130 @@
 {
   "FSEGA": {
     "Schedule": {
-      "Monday": [
-        { "start": "08:00", "end": "13:00" },
-        { "start": "14:00", "end": "19:00" }
-      ],
-      "Tuesday": [
-        { "start": "08:00", "end": "13:00" },
-        { "start": "14:00", "end": "19:00" }
-      ],
-      "Wednesday": [
-        { "start": "08:00", "end": "13:00" },
-        { "start": "14:00", "end": "19:00" }
-      ],
-      "Thursday": [
-        { "start": "08:00", "end": "13:00" },
-        { "start": "14:00", "end": "19:00" }
-      ],
-      "Friday": [
-        { "start": "08:00", "end": "13:00" },
-        { "start": "14:00", "end": "19:00" }
-      ]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "Rooms": {
-      "C101": {
-        "Capacity": 32,
-        "Flags": ["noLaboratory"]
-      },
-      "L001": {
-        "Capacity": 40,
-        "Flags": ["noCourse"]
-      },
-      "L404": {
-        "Capacity": 20,
-        "Flags": ["noCourse", "noSeminar"]
-      },
-      "C502": {
-        "Capacity": 35,
-        "Flags": ["noLaboratory"]
-      },
       "A1": {
         "Capacity": 250,
         "Flags": ["noSeminar", "noLaboratory"]
+      },
+      "A2": {
+        "Capacity": 250,
+        "Flags": ["noSeminar", "noLaboratory"]
+      },
+      "C101": {
+        "Capacity": 40,
+        "Flags": ["noCourse", "noLaboratory"]
+      },
+      "C301": {
+        "Capacity": 40,
+        "Flags": ["noCourse", "noLaboratory"]
+      },
+      "C302": {
+        "Capacity": 40,
+        "Flags": ["noCourse", "noLaboratory"]
+      },
+      "C303": {
+        "Capacity": 40,
+        "Flags": ["noCourse", "noLaboratory"]
+      },
+      "C502": {
+        "Capacity": 35,
+        "Flags": ["noCourse", "noLaboratory"]
+      },
+      "C503": {
+        "Capacity": 35,
+        "Flags": ["noCourse", "noLaboratory"]
+      },
+      "C505": {
+        "Capacity": 35,
+        "Flags": ["noCourse", "noLaboratory"]
+      },
+      "L001": {
+        "Capacity": 30,
+        "Flags": ["noCourse", "noSeminar"]
+      },
+      "L303": {
+        "Capacity": 20,
+        "Flags": ["noCourse", "noSeminar"]
+      },
+      "L304": {
+        "Capacity": 20,
+        "Flags": ["noCourse", "noSeminar"]
+      },
+      "L305": {
+        "Capacity": 20,
+        "Flags": ["noCourse", "noSeminar"]
+      },
+      "L306": {
+        "Capacity": 20,
+        "Flags": ["noCourse", "noSeminar"]
+      },
+      "L307": {
+        "Capacity": 20,
+        "Flags": ["noCourse", "noSeminar"]
+      },
+      "L308": {
+        "Capacity": 25,
+        "Flags": ["noCourse", "noSeminar"]
+      },
+      "L404": {
+        "Capacity": 25,
+        "Flags": ["noCourse", "noSeminar"]
       }
     }
   },
   "CENTER": {
     "Schedule": {
       "Monday": [{ "start": "08:00", "end": "20:00" }],
-      "Tuesday": [
-        { "start": "08:00", "end": "13:00" },
-        { "start": "14:00", "end": "19:00" }
-      ],
-      "Wednesday": [
-        { "start": "08:00", "end": "13:00" },
-        { "start": "14:00", "end": "19:00" }
-      ],
-      "Thursday": [
-        { "start": "08:00", "end": "13:00" },
-        { "start": "14:00", "end": "19:00" }
-      ],
-      "Friday": [
-        { "start": "08:00", "end": "13:00" },
-        { "start": "14:00", "end": "19:00" }
-      ]
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "Rooms": {
       "2/I": {
-        "Capacity": 32,
+        "Capacity": 120,
         "Flags": ["noSeminar", "noLaboratory"]
       },
       "5/I": {
         "Capacity": 40,
-        "Flags": ["noLaboratory"]
+        "Flags": ["noCourse", "noLaboratory"]
+      },
+      "6/I": {
+        "Capacity": 40,
+        "Flags": ["noCourse", "noLaboratory"]
       },
       "6/II": {
+        "Capacity": 30,
+        "Flags": ["noCourse", "noLaboratory"]
+      }
+    }
+  },
+  "Mathematica": {
+    "Schedule": {
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
+    },
+    "Rooms": {
+      "Pi": {
         "Capacity": 20,
-        "Flags": ["noSeminar", "noLaboratory"]
+        "Flags": ["noCourse", "noSeminar"]
+      },
+      "Lambda": {
+        "Capacity": 20,
+        "Flags": ["noCourse", "noSeminar"]
+      },
+      "Gamma": {
+        "Capacity": 20,
+        "Flags": ["noCourse", "noSeminar"]
       }
     }
   }

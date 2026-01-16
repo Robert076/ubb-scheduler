@@ -131,6 +131,8 @@ public class SubjectScheduler {
     private boolean canScheduleCourseForAllGroups(Teacher teacher, List<Group> groups, String day, int hour, int duration) {
         if (teacher == null || teacher.getName() == null) return false;
         
+        if (!teacher.canTeachCourse(subjectName)) return false;
+
         for (int h = hour; h < hour + duration; h++) {
             if (!teacherState.isTeacherAvailable(teacher.getName(), day, h)) return false;
         }
@@ -171,7 +173,9 @@ public class SubjectScheduler {
                     day,
                     java.time.LocalTime.of(hour, 0),
                     java.time.LocalTime.of(hour + duration, 0),
-                    "COURSE"
+                    "COURSE",
+                    "",
+                    "Weekly"
             );
             
             groupState.addActivity(group.getId(), activity);
@@ -185,7 +189,9 @@ public class SubjectScheduler {
                 day,
                 java.time.LocalTime.of(hour, 0),
                 java.time.LocalTime.of(hour + duration, 0),
-                "COURSE"
+                "COURSE",
+                "",
+                "Weekly"
         );
         teacherState.addActivity(teacher.getName(), teacherActivity);
         roomState.addActivity(room.getId(), teacherActivity);
@@ -233,31 +239,48 @@ public class SubjectScheduler {
      * Schedule all seminar activities for this subject
      */
     private boolean scheduleSeminars(List<Group> groups, List<Teacher> teachers) {
-        int seminarHours = subject.getSeminarHours();
         boolean allScheduled = true;
 
         for (Group group : groups) {
             int seminarSplits = group.getSeminarySplit();
             if (seminarSplits <= 0) continue;
             
-            // Hours per group
-            int hoursForThisGroup = subject.getSeminarHours(); 
-
-            for (int i = 0; i < seminarSplits; i++) {
-                int scheduledForSplit = 0;
-                while (scheduledForSplit < hoursForThisGroup) {
+            double frequencyPerWeek = subject.getSeminarsPerWeek();
+            int duration = subject.getSeminarLenght();
+            
+            if (frequencyPerWeek == 0.5) {
+                // 0.5 frequency means 2 hours every 2 weeks (Odd/Even)
+                // We schedule one 2-hour activity for each split, alternating weeks
+                for (int i = 0; i < seminarSplits; i++) {
                     Teacher teacher = selectTeacher(teachers);
-                    int duration = Math.min(subject.getSeminarLenght(), hoursForThisGroup - scheduledForSplit);
+                    String subgroup = (seminarSplits > 1) ? String.valueOf(i + 1) : "";
+                    String frequency = (i % 2 == 0) ? "Odd Week" : "Even Week";
                     
-                    if (duration <= 0) break;
-
-                    if (!tryScheduleActivityWithDuration(teacher, group, "SEMINAR", duration)) {
-                        if (!scheduleWithBacktrackingAndDuration(teacher, group, "SEMINAR", duration)) {
+                    if (!tryScheduleActivityWithDetails(teacher, group, "SEMINAR", duration, subgroup, frequency)) {
+                        if (!scheduleWithBacktrackingAndDetails(teacher, group, "SEMINAR", duration, subgroup, frequency)) {
                             allScheduled = false;
-                            break;
                         }
                     }
-                    scheduledForSplit += duration;
+                }
+            } else {
+                // Regular frequency (usually 1)
+                int hoursForThisGroup = subject.getSeminarHours(); 
+                for (int i = 0; i < seminarSplits; i++) {
+                    int scheduledForSplit = 0;
+                    String subgroup = (seminarSplits > 1) ? String.valueOf(i + 1) : "";
+                    while (scheduledForSplit < hoursForThisGroup) {
+                        Teacher teacher = selectTeacher(teachers);
+                        int currentDuration = Math.min(duration, hoursForThisGroup - scheduledForSplit);
+                        if (currentDuration <= 0) break;
+
+                        if (!tryScheduleActivityWithDetails(teacher, group, "SEMINAR", currentDuration, subgroup, "Weekly")) {
+                            if (!scheduleWithBacktrackingAndDetails(teacher, group, "SEMINAR", currentDuration, subgroup, "Weekly")) {
+                                allScheduled = false;
+                                break;
+                            }
+                        }
+                        scheduledForSplit += currentDuration;
+                    }
                 }
             }
         }
@@ -274,81 +297,115 @@ public class SubjectScheduler {
             int labSplits = group.getLaboratorySplitCount();
             if (labSplits <= 0) continue;
             
-            // For each split, we need to schedule 'laboratoriesPerWeek' times 'laboratoriesLenght'
-            // In the config, LaboratoriesPerWeek = 0.5 and LaboratoriesLenght = 2 means 1 hour per group per week.
-            // But usually this means 2 hours every 2 weeks.
-            // For this scheduler, we'll treat it as total hours required for THAT group.
-            int hoursForThisGroup = subject.getLaboratoryHours(); 
+            double frequencyPerWeek = subject.getLaboratoriesPerWeek();
+            int duration = subject.getLaboratoriesLenght();
 
-            for (int i = 0; i < labSplits; i++) {
-                int scheduledForSplit = 0;
-                while (scheduledForSplit < hoursForThisGroup) {
+            if (frequencyPerWeek == 0.5) {
+                // 0.5 frequency means 2 hours every 2 weeks (Odd/Even)
+                for (int i = 0; i < labSplits; i++) {
                     Teacher teacher = selectTeacher(teachers);
-                    int duration = Math.min(subject.getLaboratoriesLenght(), hoursForThisGroup - scheduledForSplit);
+                    String subgroup = (labSplits > 1) ? String.valueOf(i + 1) : "";
+                    String frequency = (i % 2 == 0) ? "Odd Week" : "Even Week";
                     
-                    if (duration <= 0) break;
-
-                    if (!tryScheduleActivityWithDuration(teacher, group, "LABORATORY", duration)) {
-                        if (!scheduleWithBacktrackingAndDuration(teacher, group, "LABORATORY", duration)) {
+                    if (!tryScheduleActivityWithDetails(teacher, group, "LABORATORY", duration, subgroup, frequency)) {
+                        if (!scheduleWithBacktrackingAndDetails(teacher, group, "LABORATORY", duration, subgroup, frequency)) {
                             allScheduled = false;
-                            break;
                         }
                     }
-                    scheduledForSplit += duration;
+                }
+            } else {
+                int hoursForThisGroup = subject.getLaboratoryHours(); 
+                for (int i = 0; i < labSplits; i++) {
+                    int scheduledForSplit = 0;
+                    String subgroup = (labSplits > 1) ? String.valueOf(i + 1) : "";
+                    while (scheduledForSplit < hoursForThisGroup) {
+                        Teacher teacher = selectTeacher(teachers);
+                        int currentDuration = Math.min(duration, hoursForThisGroup - scheduledForSplit);
+                        if (currentDuration <= 0) break;
+
+                        if (!tryScheduleActivityWithDetails(teacher, group, "LABORATORY", currentDuration, subgroup, "Weekly")) {
+                            if (!scheduleWithBacktrackingAndDetails(teacher, group, "LABORATORY", currentDuration, subgroup, "Weekly")) {
+                                allScheduled = false;
+                                break;
+                            }
+                        }
+                        scheduledForSplit += currentDuration;
+                    }
                 }
             }
         }
         return allScheduled;
     }
 
-    /**
-     * Try to schedule activity with constraint checking
-     */
-    private boolean tryScheduleActivityWithDuration(Teacher teacher, Group group, String activityType, int duration) {
+    private boolean tryScheduleActivityWithDetails(Teacher teacher, Group group, String activityType, int duration, String subgroup, String frequency) {
         String[] days = {"MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY"};
 
-        // Try random time slots
         for (int attempt = 0; attempt < 100; attempt++) {
             String day = days[random.nextInt(days.length)];
-            int startHour = 8 + random.nextInt(12 - duration); // Adjusted for duration
+            int startHour = 8 + random.nextInt(12 - duration);
             int endHour = startHour + duration;
 
             if (canScheduleAt(teacher, group, day, startHour, endHour, activityType)) {
-                return scheduleActivity(teacher, group, activityType, day, startHour, endHour);
+                return scheduleActivityWithDetails(teacher, group, activityType, day, startHour, endHour, subgroup, frequency);
             }
         }
         return false;
     }
 
-    /**
-     * Backtracking - try all possible time slots
-     */
-    private boolean scheduleWithBacktrackingAndDuration(Teacher teacher, Group group, String activityType, int duration) {
+    private boolean scheduleWithBacktrackingAndDetails(Teacher teacher, Group group, String activityType, int duration, String subgroup, String frequency) {
         String[] days = {"MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY"};
 
         for (String day : days) {
             for (int hour = 8; hour <= 20 - duration; hour++) {
                 if (canScheduleAt(teacher, group, day, hour, hour + duration, activityType)) {
-                    return scheduleActivity(teacher, group, activityType, day, hour, hour + duration);
+                    return scheduleActivityWithDetails(teacher, group, activityType, day, hour, hour + duration, subgroup, frequency);
                 }
             }
         }
         return false;
     }
 
-    /**
-     * Try to schedule activity with constraint checking
-     */
-    private boolean tryScheduleActivity(Teacher teacher, Group group, String activityType) {
-        return tryScheduleActivityWithDuration(teacher, group, activityType, 1);
+    private boolean scheduleActivityWithDetails(Teacher teacher, Group group, String activityType,
+                                             String day, int startHour, int endHour, String subgroup, String frequency) {
+        try {
+            if (teacher == null || group == null) return false;
+
+            int minCapacity = group.getSize();
+            if ("SEMINAR".equals(activityType)) {
+                minCapacity = group.getSeminaryGroupSize();
+            } else if ("LABORATORY".equals(activityType)) {
+                minCapacity = group.getLaboratoryGroupSize();
+            }
+
+            Room room = getAvailableRoomWithCapacity(day, startHour, activityType, minCapacity);
+            if (room == null || room.getId() == null) {
+                return false;
+            }
+
+            Activity activity = new Activity(
+                    subjectName,
+                    group.getId(),
+                    teacher.getName(),
+                    room.getId(),
+                    day,
+                    java.time.LocalTime.of(startHour, 0),
+                    java.time.LocalTime.of(endHour, 0),
+                    activityType,
+                    subgroup,
+                    frequency
+            );
+
+            teacherState.addActivity(teacher.getName(), activity);
+            groupState.addActivity(group.getId(), activity);
+            roomState.addActivity(room.getId(), activity);
+
+            scheduledActivities.add(activity);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
-    /**
-     * Backtracking - try all possible time slots
-     */
-    private boolean scheduleWithBacktracking(Teacher teacher, Group group, String activityType) {
-        return scheduleWithBacktrackingAndDuration(teacher, group, activityType, 1);
-    }
 
     /**
      * Check if we can schedule activity at given time
@@ -409,50 +466,6 @@ public class SubjectScheduler {
         return true;
     }
 
-    /**
-     * Actually schedule the activity
-     */
-    private boolean scheduleActivity(Teacher teacher, Group group, String activityType,
-                                     String day, int startHour, int endHour) {
-        try {
-            if (teacher == null || group == null) return false;
-
-            int minCapacity = group.getSize();
-            if ("SEMINAR".equals(activityType)) {
-                minCapacity = group.getSeminaryGroupSize();
-            } else if ("LABORATORY".equals(activityType)) {
-                minCapacity = group.getLaboratoryGroupSize();
-            }
-
-            // Get a room
-            Room room = getAvailableRoomWithCapacity(day, startHour, activityType, minCapacity);
-            if (room == null || room.getId() == null) {
-                return false;
-            }
-
-            // Create activity
-            Activity activity = new Activity(
-                    subjectName,
-                    group.getId(),
-                    teacher.getName(),
-                    room.getId(),
-                    day,
-                    java.time.LocalTime.of(startHour, 0),
-                    java.time.LocalTime.of(endHour, 0),
-                    activityType
-            );
-
-            // Record in state
-            teacherState.addActivity(teacher.getName(), activity);
-            groupState.addActivity(group.getId(), activity);
-            roomState.addActivity(room.getId(), activity);
-
-            scheduledActivities.add(activity);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
 
     /**
      * Get an available room for the time slot

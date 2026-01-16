@@ -14,19 +14,85 @@
     "Language": "English",
     "CoursesPerWeek": 1,
     "CourseLenght": 2,
+    "SeminarsPerWeek": 0.5,
+    "SeminarLenght": 2,
+    "LaboratoriesPerWeek": 1,
+    "LaboratoriesLenght": 2
+  },
+  "Computational Logic": {
+    "MainTeacher": "Lupea Mihaela",
+    "Language": "English",
+    "CoursesPerWeek": 1,
+    "CourseLenght": 2,
+    "SeminarsPerWeek": 1,
+    "SeminarLenght": 2
+  },
+  "Algebra": {
+    "MainTeacher": "Septimiu Crivei",
+    "Language": "English",
+    "CoursesPerWeek": 1,
+    "CourseLenght": 2,
+    "SeminarsPerWeek": 1,
+    "SeminarLenght": 2,
+    "LaboratoriesPerWeek": 0,
+    "LaboratoriesLenght": 2
+  },
+  "Mathematical Analysis": {
+    "MainTeacher": "Nechita Mihai",
+    "Language": "English",
+    "CoursesPerWeek": 1,
+    "CourseLenght": 2,
+    "SeminarsPerWeek": 1,
+    "SeminarLenght": 2,
+    "LaboratoriesPerWeek": 0,
+    "LaboratoriesLenght": 2
+  },
+  "Computer Networks": {
+    "MainTeacher": "Darabant Sergiu",
+    "Language": "English",
+    "CoursesPerWeek": 1,
+    "CourseLenght": 2,
+    "LaboratoriesPerWeek": 1,
+    "LaboratoriesLenght": 2
+  },
+  "Functional and Logical Programming": {
+    "MainTeacher": "Pop F. Horia",
+    "Language": "English",
+    "CoursesPerWeek": 1,
+    "CourseLenght": 2,
+    "SeminarsPerWeek": 0.5,
+    "SeminarLenght": 2,
+    "LaboratoriesPerWeek": 0.5,
+    "LaboratoriesLenght": 2
+  },
+  "Probabilities and Statistics": {
+    "MainTeacher": "Micula Sanda",
+    "Language": "English",
+    "CoursesPerWeek": 1,
+    "CourseLenght": 2,
+    "SeminarsPerWeek": 0.5,
+    "SeminarLenght": 2,
+    "LaboratoriesPerWeek": 0.5,
+    "LaboratoriesLenght": 2
+  },
+  "Advanced Programming Methods": {
+    "MainTeacher": "Craciun Florin",
+    "Language": "English",
+    "CoursesPerWeek": 1,
+    "CourseLenght": 2,
     "SeminarsPerWeek": 1,
     "SeminarLenght": 2,
     "LaboratoriesPerWeek": 1,
     "LaboratoriesLenght": 2
   },
-  "Mobile Applications": {
-    "MainTeacher": "Dan Cojocar",
+  "Databases": {
+    "MainTeacher": "Surdu Sabina",
     "Language": "English",
     "CoursesPerWeek": 1,
     "CourseLenght": 2,
-    "SeminarsPerWeek": 0,
-    "SeminarLenght": 0,
-    "LaboratoriesPerWeek": 0.5,
+    "SeminarsPerWeek": 0.5,
+    "SeminarLenght": 2,
+    "LaboratoriesPerWeek": 1,
     "LaboratoriesLenght": 2
   }
 }

@@ -93,6 +93,11 @@ public class Teacher {
         return subjects != null && subjects.containsKey(subjectName);
     }
 
+    public boolean canTeachCourse(String subjectName) {
+        SubjectCapability capability = subjects.get(subjectName);
+        return capability != null && capability.isCanCourse();
+    }
+
     public boolean canTeachSeminar(String subjectName) {
         SubjectCapability capability = subjects.get(subjectName);
         return capability != null && capability.isCanSeminary();

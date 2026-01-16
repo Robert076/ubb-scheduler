@@ -151,6 +151,10 @@ public class TimetableInitializer {
 
             if (result.success()) {
                 ConsoleUI.displayDetailedTimetable(result.getActivities());
+                
+                // Export timetable
+                ScheduleExporter exporter = new ScheduleExporter();
+                exporter.export(result.getActivities());
             }
 
             return result.success();

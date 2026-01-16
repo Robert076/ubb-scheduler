@@ -2,14 +2,182 @@
   "911": {
     "Size": 30,
     "Language": "English",
-    "Subjects": ["Computer Systems Architecture", "Fundamentals of Programming"],
+    "Subjects": [
+      "Computer Systems Architecture",
+      "Fundamentals of Programming",
+      "Algebra",
+      "Mathematical Analysis",
+      "Computational Logic"
+    ],
     "SeminarySplit": 1,
     "LaboratorySplit": 2
   },
-  "931": {
+  "912": {
     "Size": 30,
     "Language": "English",
-    "Subjects": ["Mobile Applications"],
+    "Subjects": [
+      "Computer Systems Architecture",
+      "Fundamentals of Programming",
+      "Algebra",
+      "Mathematical Analysis",
+      "Computational Logic"
+    ],
+    "SeminarySplit": 1,
+    "LaboratorySplit": 2
+  },
+  "913": {
+    "Size": 30,
+    "Language": "English",
+    "Subjects": [
+      "Computer Systems Architecture",
+      "Fundamentals of Programming",
+      "Algebra",
+      "Mathematical Analysis",
+      "Computational Logic"
+    ],
+    "SeminarySplit": 1,
+    "LaboratorySplit": 2
+  },
+  "914": {
+    "Size": 30,
+    "Language": "English",
+    "Subjects": [
+      "Computer Systems Architecture",
+      "Fundamentals of Programming",
+      "Algebra",
+      "Mathematical Analysis",
+      "Computational Logic"
+    ],
+    "SeminarySplit": 1,
+    "LaboratorySplit": 2
+  },
+  "915": {
+    "Size": 30,
+    "Language": "English",
+    "Subjects": [
+      "Computer Systems Architecture",
+      "Fundamentals of Programming",
+      "Algebra",
+      "Mathematical Analysis",
+      "Computational Logic"
+    ],
+    "SeminarySplit": 1,
+    "LaboratorySplit": 2
+  },
+  "916": {
+    "Size": 30,
+    "Language": "English",
+    "Subjects": [
+      "Computer Systems Architecture",
+      "Fundamentals of Programming",
+      "Algebra",
+      "Mathematical Analysis",
+      "Computational Logic"
+    ],
+    "SeminarySplit": 1,
+    "LaboratorySplit": 2
+  },
+  "917": {
+    "Size": 30,
+    "Language": "English",
+    "Subjects": [
+      "Computer Systems Architecture",
+      "Fundamentals of Programming",
+      "Algebra",
+      "Mathematical Analysis",
+      "Computational Logic"
+    ],
+    "SeminarySplit": 1,
+    "LaboratorySplit": 2
+  },
+  "921": {
+    "Size": 30,
+    "Language": "English",
+    "Subjects": [
+      "Computer Networks",
+      "Functional and Logical Programming",
+      "Probabilities and Statistics",
+      "Advanced Programming Methods",
+      "Databases"
+    ],
+    "SeminarySplit": 1,
+    "LaboratorySplit": 2
+  },
+  "922": {
+    "Size": 30,
+    "Language": "English",
+    "Subjects": [
+      "Computer Networks",
+      "Functional and Logical Programming",
+      "Probabilities and Statistics",
+      "Advanced Programming Methods",
+      "Databases"
+    ],
+    "SeminarySplit": 1,
+    "LaboratorySplit": 2
+  },
+  "923": {
+    "Size": 30,
+    "Language": "English",
+    "Subjects": [
+      "Computer Networks",
+      "Functional and Logical Programming",
+      "Probabilities and Statistics",
+      "Advanced Programming Methods",
+      "Databases"
+    ],
+    "SeminarySplit": 1,
+    "LaboratorySplit": 2
+  },
+  "924": {
+    "Size": 30,
+    "Language": "English",
+    "Subjects": [
+      "Computer Networks",
+      "Functional and Logical Programming",
+      "Probabilities and Statistics",
+      "Advanced Programming Methods",
+      "Databases"
+    ],
+    "SeminarySplit": 1,
+    "LaboratorySplit": 2
+  },
+  "925": {
+    "Size": 30,
+    "Language": "English",
+    "Subjects": [
+      "Computer Networks",
+      "Functional and Logical Programming",
+      "Probabilities and Statistics",
+      "Advanced Programming Methods",
+      "Databases"
+    ],
+    "SeminarySplit": 1,
+    "LaboratorySplit": 2
+  },
+  "926": {
+    "Size": 30,
+    "Language": "English",
+    "Subjects": [
+      "Computer Networks",
+      "Functional and Logical Programming",
+      "Probabilities and Statistics",
+      "Advanced Programming Methods",
+      "Databases"
+    ],
+    "SeminarySplit": 1,
+    "LaboratorySplit": 2
+  },
+  "927": {
+    "Size": 30,
+    "Language": "English",
+    "Subjects": [
+      "Computer Networks",
+      "Functional and Logical Programming",
+      "Probabilities and Statistics",
+      "Advanced Programming Methods",
+      "Databases"
+    ],
     "SeminarySplit": 1,
     "LaboratorySplit": 2
   }

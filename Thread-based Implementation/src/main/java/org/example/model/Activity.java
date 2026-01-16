@@ -11,8 +11,15 @@ public record Activity(
         String day,
         LocalTime startTime,
         LocalTime endTime,
-        String activityType
+        String activityType,
+        String subgroup,
+        String frequency
 ) {
+    public Activity(String subjectName, String groupId, String teacherName, String roomId,
+                    String day, LocalTime startTime, LocalTime endTime, String activityType) {
+        this(subjectName, groupId, teacherName, roomId, day, startTime, endTime, activityType, "", "Weekly");
+    }
+
     public Activity {
         Objects.requireNonNull(subjectName, "Subject name cannot be null");
         Objects.requireNonNull(groupId, "Group ID cannot be null");
@@ -20,6 +27,8 @@ public record Activity(
         Objects.requireNonNull(roomId, "Room ID cannot be null");
         Objects.requireNonNull(day, "Day cannot be null");
         Objects.requireNonNull(activityType, "Activity type cannot be null");
+        Objects.requireNonNull(subgroup, "Subgroup cannot be null");
+        Objects.requireNonNull(frequency, "Frequency cannot be null");
     }
 
     public int getDurationHours() {
