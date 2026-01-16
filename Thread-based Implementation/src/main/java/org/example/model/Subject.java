@@ -137,7 +137,7 @@ public class Subject {
     }
 
     public int getLaboratoryHours() {
-        return (int) (laboratoriesPerWeek * laboratoriesLenght);
+        return (int) Math.ceil(laboratoriesPerWeek * laboratoriesLenght);
     }
 
     public int getTotalHours() {

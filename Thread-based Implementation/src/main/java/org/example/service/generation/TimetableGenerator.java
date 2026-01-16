@@ -74,13 +74,22 @@ public class TimetableGenerator {
                     Subject subj = subjects.get(subjectName);
                     int requiredHours = (subj != null) ? subj.getTotalHoursPerWeek() : 0;
                     
-            // A subject is successful if we scheduled AT LEAST the required hours
-                    boolean subjectSuccess = subjectActivities != null && subjectActivities.size() >= requiredHours;
+                    // A subject is successful if we scheduled AT LEAST the required hours
+                    // Note: activities list contains duplicates for courses (one per group)
+                    // We need to count unique teacher-time slots.
+                    long uniqueScheduledHours = subjectActivities == null ? 0 : 
+                        subjectActivities.stream()
+                            .filter(a -> a.groupId().equals("ALL_GROUPS") || (!a.activityType().equals("COURSE") && !a.activityType().equals("BUSY") && !a.activityType().equals("CLOSED")))
+                            .mapToInt(Activity::getDurationHours)
+                            .sum();
+
+                    // Success rate check (strict 100% or allow near 100%)
+                    boolean subjectSuccess = uniqueScheduledHours >= (requiredHours - 0.01);
                     
                     if (!subjectSuccess) {
                         String reason = (subjectActivities == null || subjectActivities.isEmpty()) 
                                 ? "No activities scheduled." 
-                                : "Only " + subjectActivities.size() + "/" + requiredHours + " hours scheduled.";
+                                : "Only " + uniqueScheduledHours + "/" + requiredHours + " hours scheduled.";
                         System.err.println("Subject " + subjectName + " failed: " + reason);
                         metrics.recordError("Subject " + subjectName + " failed: " + reason);
                     }
@@ -88,7 +97,7 @@ public class TimetableGenerator {
                     subjectResults.add(new SubjectGenerationResult(
                             subjectName,
                             subjectSuccess,
-                            subjectActivities != null ? subjectActivities.size() : 0,
+                            (int) uniqueScheduledHours,
                             System.currentTimeMillis() - subStartTime
                     ));
                     
@@ -133,18 +142,20 @@ public class TimetableGenerator {
             long totalTime = System.currentTimeMillis() - startTime;
             metrics.setTotalTime(totalTime);
 
-            double totalScheduled = 0;
-            for (SubjectGenerationResult res : subjectResults) {
-                totalScheduled += res.scheduledHours();
-            }
+            // Success Rate Calculation
+            double totalScheduled = subjectResults.stream()
+                    .mapToDouble(SubjectGenerationResult::scheduledHours)
+                    .sum();
             
-            double totalRequired = 0;
-            for (String sName : sortedSubjects) {
-                Subject s = subjects.get(sName);
-                if (s != null) totalRequired += s.getTotalHoursPerWeek();
-            }
+            double totalRequired = sortedSubjects.stream()
+                    .map(subjects::get)
+                    .filter(Objects::nonNull)
+                    .mapToDouble(Subject::getTotalHoursPerWeek)
+                    .sum();
             
             double successRate = (totalRequired > 0) ? (totalScheduled / totalRequired) * 100.0 : 0.0;
+            // Round to 1 decimal place to avoid floating point noise in comparisons
+            successRate = Math.round(successRate * 10.0) / 10.0;
 
             String fatalError = null;
             if (!metrics.getErrors().isEmpty()) {

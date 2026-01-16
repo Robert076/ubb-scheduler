@@ -1,6 +1,7 @@
 package org.example.ui;
 
 import org.example.context.TimetableDataContext;
+import org.example.model.Activity;
 import org.example.service.generation.*;
 import org.example.service.validation.ValidationOrchestrator;
 import org.example.service.validation.ValidationResult;
@@ -235,6 +236,70 @@ public class ConsoleUI {
     }
 
     // ==================== SUCCESS & FAILURE ====================
+
+    public static void displayDetailedTimetable(List<Activity> activities) {
+        if (activities == null || activities.isEmpty()) {
+            System.out.println(INFO_COLOR + "No activities scheduled to display." + RESET_COLOR);
+            return;
+        }
+
+        System.out.println();
+        System.out.println(HEADER_COLOR + "╔════════════════════════════════════════════╗" + RESET_COLOR);
+        System.out.println(HEADER_COLOR + "║           DETAILED TIMETABLE               ║" + RESET_COLOR);
+        System.out.println(HEADER_COLOR + "╚════════════════════════════════════════════╝" + RESET_COLOR);
+
+        // Sort activities by day, then by start time, then by group
+        List<Activity> sortedActivities = new ArrayList<>(activities);
+        List<String> daysOrder = Arrays.asList("MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY");
+        
+        sortedActivities.sort(Comparator
+                .comparingInt((Activity a) -> daysOrder.indexOf(a.day().toUpperCase()))
+                .thenComparing(Activity::startTime)
+                .thenComparing(Activity::groupId));
+
+        String currentDay = "";
+        Set<String> displayedCourseSlots = new HashSet<>();
+
+        for (Activity activity : sortedActivities) {
+            // Skip busy/closed slots if you want a clean timetable
+            if ("BUSY".equals(activity.activityType()) || "CLOSED".equals(activity.activityType())) {
+                continue;
+            }
+
+            // Deduplicate course entries (which are repeated for each group)
+            if ("COURSE".equals(activity.activityType())) {
+                String slotKey = activity.day() + "|" + activity.startTime() + "|" + activity.subjectName() + "|" + activity.roomId();
+                if (displayedCourseSlots.contains(slotKey)) {
+                    continue;
+                }
+                displayedCourseSlots.add(slotKey);
+            }
+
+            if (!activity.day().equalsIgnoreCase(currentDay)) {
+                currentDay = activity.day().toUpperCase();
+                System.out.println("\n" + INFO_COLOR + "📅 " + currentDay + RESET_COLOR);
+                System.out.println("─".repeat(80));
+            }
+
+            String timeStr = String.format("%s - %s", activity.startTime(), activity.endTime());
+            String typeColor = switch (activity.activityType()) {
+                case "COURSE" -> "\u001B[34m"; // Blue
+                case "SEMINAR" -> "\u001B[32m"; // Green
+                case "LABORATORY" -> "\u001B[33m"; // Yellow
+                default -> RESET_COLOR;
+            };
+
+            String groupDisplay = "COURSE".equals(activity.activityType()) ? "ALL_GROUPS" : activity.groupId();
+            System.out.printf("  %-15s | %s%-12s%s | %-30s | %-15s | %-10s%n",
+                    timeStr,
+                    typeColor, activity.activityType(), RESET_COLOR,
+                    activity.subjectName(),
+                    activity.teacherName(),
+                    activity.roomId() + " (Gr: " + groupDisplay + ")"
+            );
+        }
+        System.out.println("\n" + "─".repeat(80));
+    }
 
     public static void printUserConfirmed() {
         System.out.println(SUCCESS_COLOR + "✓ User confirmed - Ready for timetable generation" + RESET_COLOR);

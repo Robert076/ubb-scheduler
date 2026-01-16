@@ -190,7 +190,7 @@ public class SubjectScheduler {
         teacherState.addActivity(teacher.getName(), teacherActivity);
         roomState.addActivity(room.getId(), teacherActivity);
         
-        // Count all hours scheduled
+        // Count unique hours scheduled for statistics
         for (int h = 0; h < duration; h++) {
             scheduledActivities.add(teacherActivity); 
         }
@@ -239,18 +239,25 @@ public class SubjectScheduler {
         for (Group group : groups) {
             int seminarSplits = group.getSeminarySplit();
             if (seminarSplits <= 0) continue;
-            int hoursPerSplit = seminarHours / seminarSplits;
+            
+            // Hours per group
+            int hoursForThisGroup = subject.getSeminarHours(); 
 
             for (int i = 0; i < seminarSplits; i++) {
-                for (int h = 0; h < hoursPerSplit; h++) {
+                int scheduledForSplit = 0;
+                while (scheduledForSplit < hoursForThisGroup) {
                     Teacher teacher = selectTeacher(teachers);
+                    int duration = Math.min(subject.getSeminarLenght(), hoursForThisGroup - scheduledForSplit);
+                    
+                    if (duration <= 0) break;
 
-                    int duration = subject.getSeminarLenght();
                     if (!tryScheduleActivityWithDuration(teacher, group, "SEMINAR", duration)) {
                         if (!scheduleWithBacktrackingAndDuration(teacher, group, "SEMINAR", duration)) {
                             allScheduled = false;
+                            break;
                         }
                     }
+                    scheduledForSplit += duration;
                 }
             }
         }
@@ -261,25 +268,33 @@ public class SubjectScheduler {
      * Schedule all laboratory activities for this subject
      */
     private boolean scheduleLaboratories(List<Group> groups, List<Teacher> teachers) {
-        int labHours = subject.getLaboratoryHours();
         boolean allScheduled = true;
 
         for (Group group : groups) {
             int labSplits = group.getLaboratorySplitCount();
             if (labSplits <= 0) continue;
-            int hoursPerSplit = labHours / labSplits;
+            
+            // For each split, we need to schedule 'laboratoriesPerWeek' times 'laboratoriesLenght'
+            // In the config, LaboratoriesPerWeek = 0.5 and LaboratoriesLenght = 2 means 1 hour per group per week.
+            // But usually this means 2 hours every 2 weeks.
+            // For this scheduler, we'll treat it as total hours required for THAT group.
+            int hoursForThisGroup = subject.getLaboratoryHours(); 
 
             for (int i = 0; i < labSplits; i++) {
-                for (int h = 0; h < hoursPerSplit; h++) {
+                int scheduledForSplit = 0;
+                while (scheduledForSplit < hoursForThisGroup) {
                     Teacher teacher = selectTeacher(teachers);
+                    int duration = Math.min(subject.getLaboratoriesLenght(), hoursForThisGroup - scheduledForSplit);
+                    
+                    if (duration <= 0) break;
 
-                    // Laboratories often come in 2-hour blocks
-                    int duration = subject.getLaboratoriesLenght();
                     if (!tryScheduleActivityWithDuration(teacher, group, "LABORATORY", duration)) {
                         if (!scheduleWithBacktrackingAndDuration(teacher, group, "LABORATORY", duration)) {
                             allScheduled = false;
+                            break;
                         }
                     }
+                    scheduledForSplit += duration;
                 }
             }
         }

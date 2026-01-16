@@ -149,6 +149,10 @@ public class TimetableInitializer {
             // UI: Display generation results
             ConsoleUI.displayGenerationResults(result);
 
+            if (result.success()) {
+                ConsoleUI.displayDetailedTimetable(result.getActivities());
+            }
+
             return result.success();
 
         } catch (Exception e) {
