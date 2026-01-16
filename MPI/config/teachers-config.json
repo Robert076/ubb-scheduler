@@ -1,9 +1,11 @@
 {
   "Nechita Mihai": {
     "Schedule": {
-      "Monday": [{ "start": "12:00", "end": "16:00" }],
-      "Wednesday": [{ "start": "14:00", "end": "18:00" }],
-      "Thursday": [{ "start": "10:00", "end": "14:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 12,
     "PreferredBuildings": ["FSEGA", "CENTER"],
@@ -16,10 +18,13 @@
     },
     "Languages": ["English", "Romanian"]
   },
-  "Suciu Mihai": {
+  "Vancea Alexandru": {
     "Schedule": {
-      "Monday": [{ "start": "14:00", "end": "18:00" }],
-      "Tuesday": [{ "start": "16:00", "end": "20:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 8,
     "PreferredBuildings": ["FSEGA"],
@@ -34,8 +39,11 @@
   },
   "Crivei Septimiu": {
     "Schedule": {
-      "Monday": [{ "start": "16:00", "end": "20:00" }],
-      "Wednesday": [{ "start": "08:00", "end": "12:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 8,
     "PreferredBuildings": ["FSEGA"],
@@ -46,11 +54,11 @@
   },
   "Molnar Arthur": {
     "Schedule": {
-      "Thursday": [
-        { "start": "08:00", "end": "14:00" },
-        { "start": "16:00", "end": "20:00" }
-      ],
-      "Friday": [{ "start": "10:00", "end": "14:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 14,
     "PreferredBuildings": ["FSEGA", "CENTER"],
@@ -65,8 +73,11 @@
   },
   "Lupea Mihaela": {
     "Schedule": {
-      "Thursday": [{ "start": "12:00", "end": "16:00" }],
-      "Friday": [{ "start": "10:00", "end": "14:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 10,
     "PreferredBuildings": ["FSEGA", "CENTER"],
@@ -77,8 +88,11 @@
   },
   "Nadejde Camelia": {
     "Schedule": {
-      "Tuesday": [{ "start": "08:00", "end": "14:00" }],
-      "Friday": [{ "start": "08:00", "end": "14:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 14,
     "PreferredBuildings": ["FSEGA", "CENTER"],
@@ -93,8 +107,11 @@
   },
   "Bota Daniel": {
     "Schedule": {
-      "Tuesday": [{ "start": "12:00", "end": "18:00" }],
-      "Thursday": [{ "start": "14:00", "end": "20:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 14,
     "PreferredBuildings": ["FSEGA"],
@@ -109,8 +126,11 @@
   },
   "Chiru Iulia": {
     "Schedule": {
-      "Tuesday": [{ "start": "14:00", "end": "18:00" }],
-      "Wednesday": [{ "start": "08:00", "end": "12:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 10,
     "PreferredBuildings": ["FSEGA"],
@@ -121,8 +141,11 @@
   },
   "Bodea Nicolae": {
     "Schedule": {
-      "Tuesday": [{ "start": "16:00", "end": "20:00" }],
-      "Friday": [{ "start": "14:00", "end": "20:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 12,
     "PreferredBuildings": ["FSEGA"],
@@ -137,8 +160,11 @@
   },
   "Lorinczi Abel": {
     "Schedule": {
-      "Wednesday": [{ "start": "12:00", "end": "18:00" }],
-      "Thursday": [{ "start": "10:00", "end": "14:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 12,
     "PreferredBuildings": ["FSEGA"],
@@ -153,8 +179,11 @@
   },
   "Briciu Anamaria": {
     "Schedule": {
-      "Thursday": [{ "start": "16:00", "end": "20:00" }],
-      "Friday": [{ "start": "14:00", "end": "18:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 10,
     "PreferredBuildings": ["FSEGA"],
@@ -169,11 +198,11 @@
   },
   "Mircea Ioan Gabriel": {
     "Schedule": {
-      "Friday": [
-        { "start": "08:00", "end": "12:00" },
-        { "start": "16:00", "end": "20:00" }
-      ],
-      "Monday": [{ "start": "08:00", "end": "12:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 14,
     "PreferredBuildings": ["FSEGA", "CENTER"],
@@ -188,8 +217,11 @@
   },
   "Marginean Tiberius": {
     "Schedule": {
-      "Friday": [{ "start": "12:00", "end": "18:00" }],
-      "Monday": [{ "start": "16:00", "end": "20:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 12,
     "PreferredBuildings": ["FSEGA"],
@@ -204,8 +236,11 @@
   },
   "Micu Tudor": {
     "Schedule": {
-      "Tuesday": [{ "start": "08:00", "end": "12:00" }],
-      "Wednesday": [{ "start": "08:00", "end": "14:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 12,
     "PreferredBuildings": ["FSEGA", "CENTER"],
@@ -221,8 +256,11 @@
   },
   "Pop Andreea": {
     "Schedule": {
-      "Wednesday": [{ "start": "08:00", "end": "14:00" }],
-      "Thursday": [{ "start": "14:00", "end": "18:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 12,
     "PreferredBuildings": ["FSEGA"],
@@ -237,8 +275,11 @@
   },
   "Todasca Daniel": {
     "Schedule": {
-      "Friday": [{ "start": "08:00", "end": "14:00" }],
-      "Monday": [{ "start": "14:00", "end": "18:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 12,
     "PreferredBuildings": ["FSEGA"],
@@ -253,8 +294,11 @@
   },
   "Ioja Iosif Andrei": {
     "Schedule": {
-      "Tuesday": [{ "start": "12:00", "end": "16:00" }],
-      "Thursday": [{ "start": "10:00", "end": "14:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 10,
     "PreferredBuildings": ["FSEGA"],
@@ -269,8 +313,11 @@
   },
   "Lechintan Tudor": {
     "Schedule": {
-      "Tuesday": [{ "start": "16:00", "end": "20:00" }],
-      "Wednesday": [{ "start": "14:00", "end": "20:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 12,
     "PreferredBuildings": ["FSEGA"],
@@ -285,8 +332,11 @@
   },
   "Chelaru Ioana": {
     "Schedule": {
-      "Wednesday": [{ "start": "08:00", "end": "14:00" }],
-      "Friday": [{ "start": "10:00", "end": "16:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 14,
     "PreferredBuildings": ["FSEGA"],
@@ -301,8 +351,11 @@
   },
   "Diaconu Ana-Maria": {
     "Schedule": {
-      "Wednesday": [{ "start": "08:00", "end": "12:00" }],
-      "Thursday": [{ "start": "14:00", "end": "18:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 10,
     "PreferredBuildings": ["FSEGA"],
@@ -317,8 +370,11 @@
   },
   "Craciun Florin": {
     "Schedule": {
-      "Monday": [{ "start": "08:00", "end": "12:00" }],
-      "Wednesday": [{ "start": "10:00", "end": "14:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 10,
     "PreferredBuildings": ["FSEGA", "CENTER"],
@@ -333,8 +389,11 @@
   },
   "Darabant Sergiu": {
     "Schedule": {
-      "Monday": [{ "start": "12:00", "end": "16:00" }],
-      "Wednesday": [{ "start": "08:00", "end": "12:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 10,
     "PreferredBuildings": ["CENTER", "FSEGA"],
@@ -343,10 +402,13 @@
     },
     "Languages": ["English", "Romanian"]
   },
-  "Pop F. Horia": {
+  "Horea Pop": {
     "Schedule": {
-      "Monday": [{ "start": "16:00", "end": "20:00" }],
-      "Thursday": [{ "start": "10:00", "end": "14:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 10,
     "PreferredBuildings": ["FSEGA", "CENTER"],
@@ -361,8 +423,11 @@
   },
   "Onet-Marian Zsuzsanna": {
     "Schedule": {
-      "Tuesday": [{ "start": "08:00", "end": "14:00" }],
-      "Friday": [{ "start": "10:00", "end": "16:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 14,
     "PreferredBuildings": ["FSEGA"],
@@ -377,8 +442,11 @@
   },
   "Micula Sanda": {
     "Schedule": {
-      "Tuesday": [{ "start": "10:00", "end": "14:00" }],
-      "Wednesday": [{ "start": "14:00", "end": "18:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 10,
     "PreferredBuildings": ["FSEGA", "CENTER"],
@@ -393,8 +461,11 @@
   },
   "Moraru Dora": {
     "Schedule": {
-      "Tuesday": [{ "start": "16:00", "end": "20:00" }],
-      "Thursday": [{ "start": "08:00", "end": "14:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 12,
     "PreferredBuildings": ["FSEGA"],
@@ -409,8 +480,11 @@
   },
   "Borza Razvan": {
     "Schedule": {
-      "Tuesday": [{ "start": "16:00", "end": "20:00" }],
-      "Wednesday": [{ "start": "14:00", "end": "20:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 12,
     "PreferredBuildings": ["FSEGA"],
@@ -421,8 +495,11 @@
   },
   "Marc Daria": {
     "Schedule": {
-      "Tuesday": [{ "start": "18:00", "end": "20:00" }],
-      "Thursday": [{ "start": "14:00", "end": "20:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 10,
     "PreferredBuildings": ["FSEGA"],
@@ -437,8 +514,11 @@
   },
   "Pop Emilia": {
     "Schedule": {
-      "Wednesday": [{ "start": "10:00", "end": "14:00" }],
-      "Friday": [{ "start": "10:00", "end": "14:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 10,
     "PreferredBuildings": ["FSEGA", "CENTER"],
@@ -449,8 +529,11 @@
   },
   "Sotropa Aurelian": {
     "Schedule": {
-      "Wednesday": [{ "start": "12:00", "end": "18:00" }],
-      "Friday": [{ "start": "08:00", "end": "14:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 14,
     "PreferredBuildings": ["FSEGA"],
@@ -461,8 +544,11 @@
   },
   "Coste Claudia Ioana": {
     "Schedule": {
-      "Thursday": [{ "start": "08:00", "end": "14:00" }],
-      "Friday": [{ "start": "12:00", "end": "18:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 14,
     "PreferredBuildings": ["FSEGA"],
@@ -473,8 +559,11 @@
   },
   "Albisoru Florin": {
     "Schedule": {
-      "Thursday": [{ "start": "08:00", "end": "14:00" }],
-      "Friday": [{ "start": "08:00", "end": "12:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 12,
     "PreferredBuildings": ["FSEGA"],
@@ -489,8 +578,11 @@
   },
   "Sarkozi Melisa": {
     "Schedule": {
-      "Thursday": [{ "start": "16:00", "end": "20:00" }],
-      "Wednesday": [{ "start": "16:00", "end": "20:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 10,
     "PreferredBuildings": ["FSEGA"],
@@ -505,8 +597,11 @@
   },
   "Petrescu Paul Razvan": {
     "Schedule": {
-      "Friday": [{ "start": "08:00", "end": "14:00" }],
-      "Monday": [{ "start": "14:00", "end": "18:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 12,
     "PreferredBuildings": ["FSEGA"],
@@ -521,8 +616,11 @@
   },
   "Lukacs Raul": {
     "Schedule": {
-      "Monday": [{ "start": "10:00", "end": "16:00" }],
-      "Tuesday": [{ "start": "14:00", "end": "18:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 12,
     "PreferredBuildings": ["FSEGA"],
@@ -537,8 +635,11 @@
   },
   "Demian Ana Maria": {
     "Schedule": {
-      "Monday": [{ "start": "12:00", "end": "18:00" }],
-      "Tuesday": [{ "start": "08:00", "end": "14:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 14,
     "PreferredBuildings": ["FSEGA"],
@@ -549,8 +650,11 @@
   },
   "Chis Raluca": {
     "Schedule": {
-      "Monday": [{ "start": "16:00", "end": "20:00" }],
-      "Thursday": [{ "start": "10:00", "end": "14:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 10,
     "PreferredBuildings": ["FSEGA"],
@@ -565,8 +669,11 @@
   },
   "Boanca Sara": {
     "Schedule": {
-      "Tuesday": [{ "start": "08:00", "end": "12:00" }],
-      "Friday": [{ "start": "12:00", "end": "16:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 10,
     "PreferredBuildings": ["FSEGA"],
@@ -581,8 +688,11 @@
   },
   "Jinga Tudor": {
     "Schedule": {
-      "Tuesday": [{ "start": "16:00", "end": "20:00" }],
-      "Thursday": [{ "start": "14:00", "end": "18:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 10,
     "PreferredBuildings": ["FSEGA"],
@@ -597,8 +707,11 @@
   },
   "Calin Alina": {
     "Schedule": {
-      "Thursday": [{ "start": "08:00", "end": "12:00" }],
-      "Friday": [{ "start": "14:00", "end": "18:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 10,
     "PreferredBuildings": ["FSEGA"],
@@ -613,8 +726,11 @@
   },
   "Manlup Nicoleta": {
     "Schedule": {
-      "Monday": [{ "start": "10:00", "end": "14:00" }],
-      "Wednesday": [{ "start": "14:00", "end": "18:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 10,
     "PreferredBuildings": ["FSEGA"],
@@ -629,8 +745,11 @@
   },
   "Iancu Mihai": {
     "Schedule": {
-      "Tuesday": [{ "start": "08:00", "end": "12:00" }],
-      "Thursday": [{ "start": "08:00", "end": "12:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 10,
     "PreferredBuildings": ["FSEGA"],
@@ -645,8 +764,11 @@
   },
   "Borza Diana": {
     "Schedule": {
-      "Tuesday": [{ "start": "16:00", "end": "20:00" }],
-      "Friday": [{ "start": "14:00", "end": "18:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 10,
     "PreferredBuildings": ["FSEGA"],
@@ -657,8 +779,11 @@
   },
   "Mihis Alin": {
     "Schedule": {
-      "Thursday": [{ "start": "12:00", "end": "16:00" }],
-      "Friday": [{ "start": "10:00", "end": "14:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 10,
     "PreferredBuildings": ["FSEGA"],
@@ -673,8 +798,11 @@
   },
   "Fabian Roberta": {
     "Schedule": {
-      "Friday": [{ "start": "14:00", "end": "20:00" }],
-      "Wednesday": [{ "start": "16:00", "end": "20:00" }]
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "20:00" }],
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }],
+      "Thursday": [{ "start": "08:00", "end": "20:00" }],
+      "Friday": [{ "start": "08:00", "end": "20:00" }]
     },
     "MaxHoursPerWeek": 12,
     "PreferredBuildings": ["FSEGA"],

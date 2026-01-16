@@ -14,7 +14,7 @@ using namespace std;
 #define TAG_TERMINATE 4
 #define TAG_FINAL_SCHEDULE 5
 
-// Save function (unchanged)
+// Dump schedule to JSON
 void saveScheduleToFile(const vector<ClassSession> &sessions, int rank)
 {
     string filename = "schedule_output_" + to_string(rank) + ".json";
@@ -56,7 +56,7 @@ void saveScheduleToFile(const vector<ClassSession> &sessions, int rank)
     cout << "[Rank " << rank << "] Saved schedule to " << filename << endl;
 }
 
-// Helper: Try to place a single session
+// Find valid slot for session
 bool Solver::tryPlaceSession(ClassSession &session, const vector<ClassSession> &scheduledSoFar)
 {
     for (const auto &[buildingName, place] : ctx.places.getAll())
@@ -105,7 +105,7 @@ bool Solver::tryPlaceSession(ClassSession &session, const vector<ClassSession> &
                     session.startTime = start;
                     session.endTime = end;
 
-                    if (ScheduleVerifier::isSlotFree(scheduledSoFar, session, day, start, end))
+                    if (ScheduleVerifier::isSlotFree(ctx, scheduledSoFar, session, day, start, end))
                     {
                         return true;
                     }
@@ -116,7 +116,7 @@ bool Solver::tryPlaceSession(ClassSession &session, const vector<ClassSession> &
     return false;
 }
 
-// Simple serialization: pack session into char vector
+// Struct packing
 vector<char> Solver::serializeSession(const ClassSession &s)
 {
     vector<char> buffer;
@@ -173,49 +173,45 @@ ClassSession Solver::deserializeSession(const vector<char> &data)
     return s;
 }
 
-// NEW: Collaborative solver using master-worker pattern
+// MPI Master-Worker logic
 bool Solver::solveCollaborative(vector<ClassSession> &sessions, int rank, int size)
 {
     if (rank == 0)
     {
-        // MASTER PROCESS
+        // Master
         vector<ClassSession> scheduledSessions;
         vector<ClassSession> unscheduled = sessions;
 
-        // Shuffle for variety
+        // Randomize input
         mt19937 g(42);
         shuffle(unscheduled.begin(), unscheduled.end(), g);
 
         int nextSessionIdx = 0;
-        int sessionsInProgress = 0; // Track how many workers are currently working
+        int sessionsInProgress = 0;
         int completedSessions = 0;
 
         cout << "[Master] Starting collaborative solve with " << (size - 1) << " workers" << endl;
 
-        // Main loop: continue while there's work to do or workers are busy
+        // Dispatch loop
         while (completedSessions < (int)sessions.size())
         {
             MPI_Status status;
             int dummy;
 
-            // Wait for a worker to request work or send results
-            // First check for results
+            // Poll for results
             int flag;
             MPI_Iprobe(MPI_ANY_SOURCE, TAG_WORK_RESULT, MPI_COMM_WORLD, &flag, &status);
 
             if (flag)
             {
-                // Process result
+                // Handle result
                 int success;
                 MPI_Recv(&success, 1, MPI_INT, status.MPI_SOURCE, TAG_WORK_RESULT, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
                 sessionsInProgress--;
 
-                cout << "[Master] DEBUG: Received result from worker " << status.MPI_SOURCE
-                     << ", success=" << success << ", inProgress=" << sessionsInProgress << endl;
-
                 if (success)
                 {
-                    // Receive the scheduled session
+                    // Get scheduled data
                     int bufSize;
                     MPI_Recv(&bufSize, 1, MPI_INT, status.MPI_SOURCE, TAG_WORK_RESULT, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
                     vector<char> buf(bufSize);
@@ -232,10 +228,10 @@ bool Solver::solveCollaborative(vector<ClassSession> &sessions, int rank, int si
                 }
                 else
                 {
-                    cout << "[Master] ERROR: Worker failed to place session at index " << (nextSessionIdx - 1) << endl;
+                    cout << "[Master] ERROR: Worker failed to place session" << endl;
                     sessions.clear();
 
-                    // Terminate all workers
+                    // Kill workers
                     for (int i = 1; i < size; i++)
                     {
                         int terminate = -1;
@@ -243,24 +239,20 @@ bool Solver::solveCollaborative(vector<ClassSession> &sessions, int rank, int si
                     }
                     return false;
                 }
-                continue; // Check for more results before handling work requests
+                continue;
             }
 
-            // Now handle work requests
+            // Handle worker request
             MPI_Recv(&dummy, 1, MPI_INT, MPI_ANY_SOURCE, TAG_WORK_REQUEST, MPI_COMM_WORLD, &status);
             int workerRank = status.MPI_SOURCE;
 
-            cout << "[Master] DEBUG: Worker " << workerRank << " requesting work. nextIdx="
-                 << nextSessionIdx << "/" << unscheduled.size() << ", completed="
-                 << completedSessions << "/" << sessions.size() << endl;
-
             if (nextSessionIdx < (int)unscheduled.size())
             {
-                // Send current scheduled state and next unscheduled session
+                // Send context + task
                 int numScheduled = scheduledSessions.size();
                 MPI_Send(&numScheduled, 1, MPI_INT, workerRank, TAG_WORK_ASSIGN, MPI_COMM_WORLD);
 
-                // Send all scheduled sessions
+                // Sync full schedule
                 for (const auto &s : scheduledSessions)
                 {
                     vector<char> buf = serializeSession(s);
@@ -269,7 +261,7 @@ bool Solver::solveCollaborative(vector<ClassSession> &sessions, int rank, int si
                     MPI_Send(buf.data(), bufSize, MPI_CHAR, workerRank, TAG_WORK_ASSIGN, MPI_COMM_WORLD);
                 }
 
-                // Send the unscheduled session to work on
+                // Send new task
                 vector<char> buf = serializeSession(unscheduled[nextSessionIdx]);
                 int bufSize = buf.size();
                 MPI_Send(&bufSize, 1, MPI_INT, workerRank, TAG_WORK_ASSIGN, MPI_COMM_WORLD);
@@ -277,34 +269,26 @@ bool Solver::solveCollaborative(vector<ClassSession> &sessions, int rank, int si
 
                 nextSessionIdx++;
                 sessionsInProgress++;
-
-                cout << "[Master] DEBUG: Assigned work to worker " << workerRank
-                     << ", inProgress=" << sessionsInProgress << endl;
             }
             else
             {
-                // No more work to assign
+                // Queue empty
                 if (sessionsInProgress == 0)
                 {
-                    // All done - terminate worker
+                    // Done
                     int terminate = -1;
                     MPI_Send(&terminate, 1, MPI_INT, workerRank, TAG_WORK_ASSIGN, MPI_COMM_WORLD);
-                    cout << "[Master] DEBUG: Terminating worker " << workerRank << " (no work left)" << endl;
                 }
                 else
                 {
-                    // Workers still processing - tell this worker to wait and ask again
-                    int wait = -2; // Special signal: wait and retry
+                    // Spin wait
+                    int wait = -2;
                     MPI_Send(&wait, 1, MPI_INT, workerRank, TAG_WORK_ASSIGN, MPI_COMM_WORLD);
-                    cout << "[Master] DEBUG: Told worker " << workerRank << " to wait (inProgress="
-                         << sessionsInProgress << ")" << endl;
                 }
             }
         }
 
-        cout << "[Master] DEBUG: Main loop done. Terminating remaining workers." << endl;
-
-        // Terminate all workers
+        // Cleanup
         for (int i = 1; i < size; i++)
         {
             int terminate = -1;
@@ -316,34 +300,30 @@ bool Solver::solveCollaborative(vector<ClassSession> &sessions, int rank, int si
     }
     else
     {
-        // WORKER PROCESS
+        // Worker
         while (true)
         {
-            // Request work from master
+            // Ping master
             int dummy = 0;
             MPI_Send(&dummy, 1, MPI_INT, 0, TAG_WORK_REQUEST, MPI_COMM_WORLD);
 
-            // Receive number of scheduled sessions (or termination signal)
+            // Get task info
             int numScheduled;
             MPI_Recv(&numScheduled, 1, MPI_INT, 0, TAG_WORK_ASSIGN, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
 
-            cout << "[Worker " << rank << "] DEBUG: Received numScheduled=" << numScheduled << endl;
-
             if (numScheduled == -1)
             {
-                // Termination signal
-                cout << "[Worker " << rank << "] DEBUG: Received termination signal" << endl;
+                // Exit
                 break;
             }
 
             if (numScheduled == -2)
             {
-                // Wait signal - other workers still busy, retry
-                cout << "[Worker " << rank << "] DEBUG: Told to wait, retrying..." << endl;
+                // Retry later
                 continue;
             }
 
-            // Receive all scheduled sessions
+            // Sync schedule
             vector<ClassSession> scheduledSoFar;
             for (int i = 0; i < numScheduled; i++)
             {
@@ -354,22 +334,17 @@ bool Solver::solveCollaborative(vector<ClassSession> &sessions, int rank, int si
                 scheduledSoFar.push_back(deserializeSession(buf));
             }
 
-            // Receive the unscheduled session to work on
+            // Get session to solve
             int bufSize;
             MPI_Recv(&bufSize, 1, MPI_INT, 0, TAG_WORK_ASSIGN, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
             vector<char> buf(bufSize);
             MPI_Recv(buf.data(), bufSize, MPI_CHAR, 0, TAG_WORK_ASSIGN, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
             ClassSession toSchedule = deserializeSession(buf);
 
-            cout << "[Worker " << rank << "] DEBUG: Attempting to place session: "
-                 << toSchedule.subjectName << " for group " << toSchedule.groupId << endl;
-
-            // Try to place the session
+            // Attempt placement
             bool success = tryPlaceSession(toSchedule, scheduledSoFar);
 
-            cout << "[Worker " << rank << "] DEBUG: Placement result: " << (success ? "SUCCESS" : "FAILED") << endl;
-
-            // Send result back
+            // Report back
             int successFlag = success ? 1 : 0;
             MPI_Send(&successFlag, 1, MPI_INT, 0, TAG_WORK_RESULT, MPI_COMM_WORLD);
 
@@ -387,7 +362,7 @@ bool Solver::solveCollaborative(vector<ClassSession> &sessions, int rank, int si
     }
 }
 
-// Original solve function (kept for compatibility)
+// Single thread fallback
 bool Solver::solve(vector<ClassSession> &sessions, int rank)
 {
     std::mt19937 g(rank + 1);

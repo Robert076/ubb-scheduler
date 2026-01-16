@@ -28,7 +28,7 @@
     "SeminarLength": 2
   },
   "Algebra": {
-    "MainTeacher": "Septimiu Crivei",
+    "MainTeacher": "Crivei Septimiu",
     "Language": "English",
     "CoursesPerWeek": 1,
     "CourseLength": 2,
@@ -44,7 +44,7 @@
     "SeminarLength": 2
   },
   "Computer Networks": {
-    "MainTeacher": "Darabant Adrian",
+    "MainTeacher": "Darabant Sergiu",
     "Language": "English",
     "CoursesPerWeek": 1,
     "CourseLength": 2,
@@ -62,7 +62,7 @@
     "LaboratoriesLength": 2
   },
   "Probabilities and Statistics": {
-    "Main Teacher": "Pop Sanda",
+    "Main Teacher": "Micula Sanda",
     "Language": "English",
     "CoursesPerWeek": 1,
     "CourseLength": 2,
@@ -82,7 +82,7 @@
     "LaboratoriesLength": 2
   },
   "Databases": {
-    "Main Teacher": "Surdu Sabina",
+    "Main Teacher": "Pop Emilia",
     "Language": "English",
     "CoursesPerWeek": 1,
     "CourseLength": 2,

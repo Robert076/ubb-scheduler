@@ -1,91 +1,114 @@
-# Parallel University Scheduler (MPI)
+# MPI Collaborative Schedule Solver
 
-C++ application for generating university schedules using MPI (Message Passing Interface). Resolves constraints (teachers, rooms, groups) using parallel independent search across multiple nodes.
+## What This Does
 
-## Build and Run
+University timetabling solver where **all MPI processes work together** to build **one schedule** instead of each finding their own solution independently.
 
-**Prerequisites:** Open MPI, `g++` (C++17), `nlohmann/json`.
+## The Problem
+
+- Schedule 231 class sessions (courses, seminaries, laboratories)
+- Assign time slots, rooms, and teachers
+- Avoid conflicts (same room, same teacher, same group at same time)
+- Respect constraints (room capacity, building availability, teacher schedules)
+
+## Architecture: Master-Worker Pattern
+
+### Master Process (Rank 0)
+
+**Job:** Coordinate everything and manage the global schedule state
+
+**Data Structures:**
+
+- `scheduledSessions` - sessions that have been successfully placed
+- `unscheduled` - sessions still waiting to be scheduled
+- `sessionsInProgress` - counter tracking how many workers are currently busy
+
+**What It Does:**
+
+1. Shuffles all unscheduled sessions (for randomness)
+2. Waits for workers to either:
+   - Request work (send them an unscheduled session + current schedule state)
+   - Return results (add successful placements to `scheduledSessions`)
+3. Tracks progress and terminates workers when done
+
+### Worker Processes (Rank 1..N)
+
+**Job:** Try to place individual sessions without conflicts
+
+**What They Do:**
+
+1. Request work from master
+2. Receive: current schedule state + one unscheduled session
+3. Try to find a valid slot (loop through buildings, days, hours, rooms)
+4. Check if placement is valid using `ScheduleVerifier::isSlotFree()`
+5. Send result back to master (success + placed session OR failure)
+6. Repeat until master sends termination signal
+
+## Key Functions
+
+### `solveCollaborative(sessions, rank, size)`
+
+Main entry point. Routes to master or worker logic based on rank.
+
+### `tryPlaceSession(session, scheduledSoFar)`
+
+Core placement algorithm:
+
+- Try every building → day → hour → room combination
+- Check static constraints (room type, capacity, building hours)
+- Check dynamic constraints (room free? teacher free? group free?)
+- Return true on first valid placement found
+
+### `serializeSession()` / `deserializeSession()`
+
+Pack/unpack ClassSession objects into byte arrays for MPI transmission.
+Simple format: string lengths + string data + enum values + integers.
+
+## MPI Communication Flow
+
+```
+MASTER                          WORKER
+  |                               |
+  |<------- TAG_WORK_REQUEST -----|  "Give me work"
+  |                               |
+  |---- TAG_WORK_ASSIGN --------->|  "Here's the current schedule + 1 session to place"
+  |                               |
+  |                               |  [Worker tries to place session]
+  |                               |
+  |<------ TAG_WORK_RESULT -------|  "Success! Here's the placed session"
+  |                               |
+  [Master adds to schedule]       |
+  |                               |
+  |<------- TAG_WORK_REQUEST -----|  [Loop continues...]
+```
+
+## Special Signals
+
+- `numScheduled = -1`: Terminate (no more work)
+- `numScheduled = -2`: Wait and retry (other workers still busy on last sessions)
+
+## Why This Works
+
+1. **Sequential Consistency**: Sessions are placed one at a time, so no conflicts
+2. **Parallel Efficiency**: Multiple workers try placements simultaneously
+3. **Shared State**: Every worker uses the same partial schedule
+4. **Simple Synchronization**: Master is the single source of truth
+
+## Run It
 
 ```bash
-# 1. Compile
-mpic++ -std=c++17 main.cpp \
-    repository/subject_repository.cpp \
-    repository/teacher_repository.cpp \
-    repository/place_repository.cpp \
-    repository/group_repository.cpp \
-    service/workload_generator.cpp \
-    service/schedule_verifier.cpp \
-    service/solver.cpp \
-    -I include -o schedule_app_mpi
-
-# 2. Run (example with 4 nodes)
-mpirun -np 4 ./schedule_app_mpi
+mpic++ -std=c++17 main.cpp service/*.cpp repository/*.cpp -o scheduler
+mpirun -np 4 ./scheduler
 ```
 
-## Architecture
+Output: `schedule_output_0.json` with all 231 sessions placed in ~0.2 seconds.
 
-The system uses a layered architecture to model the scheduling problem and a randomized greedy strategy to solve it.
+## Bottlenecks to Know
 
-### 1. Data Layer (Repositories)
+- Master sends entire schedule state to each worker (grows over time)
+- Last few sessions can cause idle workers (waiting for others to finish)
+- No backtracking: if a session can't be placed, the whole solve fails
 
-Loads configuration from JSON files into memory structures on initialization.
+## Quick Debugging
 
-- **Subjects:** Course frequencies, durations, and types (Course, Seminar, Lab).
-- **Teachers:** Availability schedules, building preferences, and subject qualifications.
-- **Places:** Building and room hierarchy with specific constraints (e.g., `noLaboratory`).
-- **Groups:** Student count, subgroup splits, and curriculum requirements.
-
-### 2. Logic Layer
-
-- **Workload Generator:** Converts configuration rules into a list of required `ClassSession` objects (e.g., handles subgroup splitting for labs).
-- **Schedule Verifier:** Validates candidate slots against:
-  - **Static Constraints:** Room capacity, room equipment/flags.
-  - **Dynamic Constraints:** Teacher availability, group conflicts, time overlaps.
-
-### 3. Solver (MPI Strategy)
-
-Uses a **Parallel Independent Search** approach:
-
-1.  **Initialization:** All nodes load identical configuration and generate the same unscheduled session list.
-2.  **Randomization:** Each node shuffles the session list using its MPI rank as the seed.
-3.  **Execution:** Nodes independently run a greedy algorithm to place sessions into valid time/room slots.
-4.  **Termination:** Nodes output valid schedules to JSON files (e.g., `schedule_output_0.json`).
-
-## Project structure
-
-```
-├── config/              # JSON configuration files
-├── include/             # Dependencies (nlohmann/json.hpp)
-├── model/               # Data definitions (Group, Teacher, Place, Session)
-├── repository/          # JSON parsing and object mapping
-├── service/             # Business logic
-│   ├── workload_generator.cpp  # Session instantiation
-│   ├── schedule_verifier.cpp   # Constraint checking
-│   └── solver.cpp              # Search algorithm
-└── main.cpp             # MPI initialization and process control
-```
-
-## Tech Stack
-
-- **Language:** C++17
-- **Parallelism:** Open MPI
-- **Data Format:** JSON
-- **Algorithm:** Randomized Greedy Constraint Satisfaction
-
-## Output format
-
-Schedules are saved as **JSON** format:
-
-```json
-[
-  {
-    "day": "Monday",
-    "start": "08:00",
-    "end": "10:00",
-    "group": "911",
-    "subgroup": "1",
-    "subject": "Fundamentals of Programming",
-    "room": "L404"
-  }
-]
-```
+If it hangs: check that workers send `TAG_WORK_RESULT` for every `TAG_WORK_ASSIGN` they receive.
