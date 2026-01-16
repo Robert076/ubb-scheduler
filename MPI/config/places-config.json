@@ -1,0 +1,83 @@
+{
+  "FSEGA": {
+    "Schedule": {
+      "Monday": [
+        { "start": "08:00", "end": "13:00" },
+        { "start": "14:00", "end": "19:00" }
+      ],
+      "Tuesday": [
+        { "start": "08:00", "end": "13:00" },
+        { "start": "14:00", "end": "19:00" }
+      ],
+      "Wednesday": [
+        { "start": "08:00", "end": "13:00" },
+        { "start": "14:00", "end": "19:00" }
+      ],
+      "Thursday": [
+        { "start": "08:00", "end": "13:00" },
+        { "start": "14:00", "end": "19:00" }
+      ],
+      "Friday": [
+        { "start": "08:00", "end": "13:00" },
+        { "start": "14:00", "end": "19:00" }
+      ]
+    },
+    "Rooms": {
+      "C101": {
+        "Capacity": 32,
+        "Flags": ["noLaboratory"]
+      },
+      "L001": {
+        "Capacity": 40,
+        "Flags": ["noCourse"]
+      },
+      "L404": {
+        "Capacity": 20,
+        "Flags": ["noCourse", "noSeminar"]
+      },
+      "C502": {
+        "Capacity": 35,
+        "Flags": ["noLaboratory"]
+      },
+      "A1": {
+        "Capacity": 250,
+        "Flags": ["noSeminar", "noLaboratory"]
+      }
+    }
+  },
+  "CENTER": {
+    "Schedule": {
+      "Monday": [{ "start": "08:00", "end": "20:00" }],
+      "Tuesday": [
+        { "start": "08:00", "end": "13:00" },
+        { "start": "14:00", "end": "19:00" }
+      ],
+      "Wednesday": [
+        { "start": "08:00", "end": "13:00" },
+        { "start": "14:00", "end": "19:00" }
+      ],
+      "Thursday": [
+        { "start": "08:00", "end": "13:00" },
+        { "start": "14:00", "end": "19:00" }
+      ],
+      "Friday": [
+        { "start": "08:00", "end": "13:00" },
+        { "start": "14:00", "end": "19:00" }
+      ]
+    },
+    "Rooms": {
+      "2/I": {
+        "Capacity": 32,
+        "Flags": ["noSeminar", "noLaboratory"]
+      },
+      "5/I": {
+        "Capacity": 40,
+        "Flags": ["noLaboratory"]
+      },
+      "6/II": {
+        "Capacity": 20,
+        "Flags": ["noSeminar", "noLaboratory"]
+      }
+    }
+  }
+}

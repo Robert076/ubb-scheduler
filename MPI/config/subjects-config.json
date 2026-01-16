@@ -1,0 +1,32 @@
+{
+  "Fundamentals of Programming": {
+    "MainTeacher": "Molnar Arthur",
+    "Language": "English",
+    "CoursesPerWeek": 1,
+    "CourseLenght": 2,
+    "SeminarsPerWeek": 1,
+    "SeminarLenght": 2,
+    "LaboratoriesPerWeek": 1,
+    "LaboratoriesLenght": 2
+  },
+  "Computer Systems Architecture": {
+    "MainTeacher": "Vancea Alexandru",
+    "Language": "English",
+    "CoursesPerWeek": 1,
+    "CourseLenght": 2,
+    "SeminarsPerWeek": 1,
+    "SeminarLenght": 2,
+    "LaboratoriesPerWeek": 1,
+    "LaboratoriesLenght": 2
+  },
+  "Mobile Applications": {
+    "MainTeacher": "Dan Cojocar",
+    "Language": "English",
+    "CoursesPerWeek": 1,
+    "CourseLenght": 2,
+    "SeminarsPerWeek": 0,
+    "SeminarLenght": 0,
+    "LaboratoriesPerWeek": 0.5,
+    "LaboratoriesLenght": 2
+  }
+}
