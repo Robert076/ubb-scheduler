@@ -18,5 +18,50 @@
       }
     },
     "Languages": ["English", "Romanian"]
+  },
+  "Molnar Arthur": {
+    "Schedule": {
+      "Monday": [{ "start": "12:00", "end": "20:00" }],
+      "Tuesday": [{ "start": "10:00", "end": "14:00" }]
+    },
+    "MaxHoursPerWeek": 20,
+    "PreferredBuildings": ["FSEGA", "CENTER"],
+    "Subjects": {
+      "Fundamentals of Programming": {
+        "canSeminary": true,
+        "canLaboratory": true
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Vancea Alexandru": {
+    "Schedule": {
+      "Wednesday": [{ "start": "08:00", "end": "20:00" }]
+    },
+    "MaxHoursPerWeek": 20,
+    "PreferredBuildings": ["FSEGA", "CENTER"],
+    "Subjects": {
+      "Computer Systems Architecture": {
+        "canSeminary": true,
+        "canLaboratory": true
+      }
+    },
+    "Languages": ["English", "Romanian"]
+  },
+  "Dan Cojocar": {
+    "Schedule": {
+      "Monday": [{ "start": "08:00", "end": "16:00" }],
+      "Tuesday": [{ "start": "08:00", "end": "16:00" }],
+      "Wednesday": [{ "start": "12:00", "end": "20:00" }]
+    },
+    "MaxHoursPerWeek": 20,
+    "PreferredBuildings": ["FSEGA", "CENTER"],
+    "Subjects": {
+      "Mobile Applications": {
+        "canSeminary": true,
+        "canLaboratory": true
+      }
+    },
+    "Languages": ["English", "Romanian"]
   }
 }
