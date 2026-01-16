@@ -37,38 +37,10 @@ public class TeacherRepository {
     }
 
     /**
-     * Retrieve a teacher by name.
-     */
-    public Teacher getTeacher(String name) {
-        return teachers.get(name);
-    }
-
-    /**
      * Get all teachers as an unmodifiable map.
      */
     public Map<String, Teacher> getAllTeachers() {
         return teachers;
-    }
-
-    /**
-     * Get all teacher names.
-     */
-    public Set<String> getAllTeacherNames() {
-        return teachers.keySet();
-    }
-
-    /**
-     * Check if a teacher exists by name.
-     */
-    public boolean existsTeacher(String name) {
-        return teachers.containsKey(name);
-    }
-
-    /**
-     * Get total number of teachers.
-     */
-    public int getTeacherCount() {
-        return teachers.size();
     }
 
     /**

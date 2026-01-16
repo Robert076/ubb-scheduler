@@ -37,38 +37,10 @@ public class GroupRepository {
     }
 
     /**
-     * Retrieve a group by its ID.
-     */
-    public Group getGroup(String id) {
-        return groups.get(id);
-    }
-
-    /**
      * Get all groups as an unmodifiable map.
      */
     public Map<String, Group> getAllGroups() {
         return groups;
-    }
-
-    /**
-     * Get all group IDs.
-     */
-    public Set<String> getAllGroupIds() {
-        return groups.keySet();
-    }
-
-    /**
-     * Check if a group exists by ID.
-     */
-    public boolean existsGroup(String id) {
-        return groups.containsKey(id);
-    }
-
-    /**
-     * Get total number of groups.
-     */
-    public int getGroupCount() {
-        return groups.size();
     }
 
     /**

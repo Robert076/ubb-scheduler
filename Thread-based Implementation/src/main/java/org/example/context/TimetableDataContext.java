@@ -91,15 +91,6 @@ public class TimetableDataContext {
         return instance;
     }
 
-    /**
-     * Reset singleton (useful for testing).
-     */
-    public static void reset() {
-        synchronized (lock) {
-            instance = null;
-        }
-    }
-
     // ==================== PRIMARY GETTERS ====================
 
     public Map<String, Group> getGroups() { return groups; }

@@ -1,6 +1,8 @@
 package org.example.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty; /**
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+/**
  * Model class representing a subject capability for a teacher.
  */
 public class SubjectCapability {

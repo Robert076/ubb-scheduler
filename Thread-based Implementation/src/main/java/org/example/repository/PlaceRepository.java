@@ -44,47 +44,10 @@ public class PlaceRepository {
     }
 
     /**
-     * Retrieve a place by name.
-     */
-    public Place getPlace(String name) {
-        return places.get(name);
-    }
-
-    /**
      * Get all places as an unmodifiable map.
      */
     public Map<String, Place> getAllPlaces() {
         return places;
-    }
-
-    /**
-     * Get all place names.
-     */
-    public Set<String> getAllPlaceNames() {
-        return places.keySet();
-    }
-
-    /**
-     * Check if a place exists by name.
-     */
-    public boolean existsPlace(String name) {
-        return places.containsKey(name);
-    }
-
-    /**
-     * Get total number of places.
-     */
-    public int getPlaceCount() {
-        return places.size();
-    }
-
-    /**
-     * Get total number of rooms across all places.
-     */
-    public int getTotalRoomCount() {
-        return places.values().stream()
-                .mapToInt(p -> p.getRooms().size())
-                .sum();
     }
 
     /**

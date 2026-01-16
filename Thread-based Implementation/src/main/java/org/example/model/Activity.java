@@ -3,6 +3,9 @@ package org.example.model;
 import java.time.LocalTime;
 import java.util.Objects;
 
+/**
+ * Model class representing an activity for the schedule.
+ */
 public record Activity(
         String subjectName,
         String groupId,

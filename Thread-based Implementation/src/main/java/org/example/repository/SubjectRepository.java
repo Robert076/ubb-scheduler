@@ -37,38 +37,10 @@ public class SubjectRepository {
     }
 
     /**
-     * Retrieve a subject by name.
-     */
-    public Subject getSubject(String name) {
-        return subjects.get(name);
-    }
-
-    /**
      * Get all subjects as an unmodifiable map.
      */
     public Map<String, Subject> getAllSubjects() {
         return subjects;
-    }
-
-    /**
-     * Get all subject names.
-     */
-    public Set<String> getAllSubjectNames() {
-        return subjects.keySet();
-    }
-
-    /**
-     * Check if a subject exists by name.
-     */
-    public boolean existsSubject(String name) {
-        return subjects.containsKey(name);
-    }
-
-    /**
-     * Get total number of subjects.
-     */
-    public int getSubjectCount() {
-        return subjects.size();
     }
 
     /**

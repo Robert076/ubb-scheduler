@@ -187,7 +187,6 @@ public class RoomCapacityValidator implements Validator {
             }
         }
 
-        // Aggregate
         ActivityTypeCapacity total = new ActivityTypeCapacity();
         String[] capabilities = {"COURSE_ONLY", "SEMINAR_ONLY", "LAB_ONLY", "COURSE_SEMINAR", "COURSE_LAB", "SEMINAR_LAB", "ALL"};
         
